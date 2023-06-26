@@ -1,0 +1,1 @@
+"use strict";const t=require("../../common/vendor.js"),e={data:()=>({title:"美"}),onLoad(){},methods:{}};const o=t._export_sfc(e,[["render",function(e,o,r,n,c,s){return{a:t.t(c.title)}}]]);wx.createPage(o);

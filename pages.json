@@ -1,0 +1,102 @@
+{
+	"pages": [ //pages数组中第一项表示应用启动页，参考：https://uniapp.dcloud.io/collocation/pages
+		{
+			"path": "pages/main/main",
+			"style": {
+				"navigationBarTitleText": "主页",//约毽（展示当前正在举行的，发起一场新的），关于（成果展示），新闻
+				"app-plus": {
+					"titleNView": {
+						"buttons": [{
+							"text": "\ue534",
+							"fontSrc": "/static/uni.ttf",
+							"fontSize": "22px",
+							"color": "#FFFFFF"
+						}]
+					}
+				}
+			}
+		},{
+			"path": "pages/location/location",//public毽子场地列表（展示可以是地图方式）
+			"style": {
+				"navigationBarTitleText": "列表",
+				"app-plus": {
+					"titleNView": {
+						"buttons": [{
+							"text": "\ue534",
+							"fontSrc": "/static/uni.ttf",
+							"fontSize": "22px",
+							"color": "#FFFFFF"
+						}]
+					}
+				}
+			}
+		},{
+			"path": "pages/resource/resource",
+			"style": {
+				"navigationBarTitleText": "欣赏",//毽之美，一切关于美的事物，包括基础知识介绍。
+				"app-plus": {
+					"titleNView": {
+						"buttons": [{
+							"text": "\ue534",
+							"fontSrc": "/static/uni.ttf",
+							"fontSize": "22px",
+							"color": "#FFFFFF"
+						}]
+					}
+				}
+			}
+		},
+		{
+			"path": "pages/about/about",
+			"style": {
+				"navigationBarTitleText": "我的",//我的关注，足迹
+				"app-plus": {
+					"titleNView": {
+						"buttons": [{
+							"text": "\ue534",
+							"fontSrc": "/static/uni.ttf",
+							"fontSize": "22px",
+							"color": "#FFFFFF"
+						}]
+					}
+				}
+			}
+		}
+	],
+	"globalStyle": {
+		"navigationBarTextStyle": "black",
+		"navigationBarTitleText": "uni-app",
+		"navigationBarBackgroundColor": "#F8F8F8",
+		"backgroundColor": "#F8F8F8"
+	},
+	"tabBar": {
+		"color": "#7A7E83",
+		"selectedColor": "#007AFF",
+		"borderStyle": "black",
+		"backgroundColor": "#F8F8F8",
+		"list": [{
+				"pagePath": "pages/main/main",
+				"iconPath": "static/logo1.png",
+				"selectedIconPath": "static/logo1.png",
+				"text": "主页"
+			},
+			{
+				"pagePath": "pages/location/location",
+				"iconPath": "static/logo1.png",
+				"selectedIconPath": "static/logo1.png",
+				"text": "列表"
+			},	{
+				"pagePath": "pages/resource/resource",
+				"iconPath": "static/logo1.png",
+				"selectedIconPath": "static/logo1.png",
+				"text": "资源"
+			}, {
+				"pagePath": "pages/about/about",
+				"iconPath": "static/logo1.png",
+				"selectedIconPath": "static/logo1.png",
+				"text": "关于"
+			}
+		]
+	},
+	"uniIdRouter": {}
+}
