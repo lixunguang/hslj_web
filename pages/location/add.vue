@@ -1,43 +1,25 @@
 <template>
 	<view class="content">
-		<image class="logo" src="/static/logo.png"></image>
-		<view class="text-area">
-			<text class="title">{{title}}</text>
-		</view>
-		<view class="image-list">
-			<view class="image-item" v-for="(item,index) in array" :key="index">
-				
-					<uni-row class="demo-uni-row" :width="nvueWidth">
-						<uni-col>
-							<view class="demo-uni-col dark_deep"></view>
-						</uni-col>
-					</uni-row>
-								
-								
-				<view class="image-content">
-					<image style="width: 100px; height: 50px; background-color: #eeeeee;" :src="src"
-						@error="imageError"></image>
-				</view>
 
-				<view class="image-title">{{item.Name}}</view>
-				<view class="image-title">{{item.Desc}}</view>
-				<view class="image-title">{{item.Latitude}}</view>
-				<view class="image-title">{{item.Longitude}}</view>
-				<view class="image-title">{{item.Rating}}</view>
+
+		<view class="page-body">
+			<view class="page-section page-section-gap">
+				<map style="width: 100%; height: 300px;" :latitude="latitude" :longitude="longitude" :markers="covers">
+				</map>
 			</view>
 		</view>
 
 	</view>
+
 </template>
 
 <script>
 	export default {
 		data() {
 			return {
-				title: 'location',
-				array: [],
-				src: 'https://www.simapps.com/style/store/img/index-logo.png'
-			}
+				title: 'location'
+
+		}
 
 		},
 
@@ -108,9 +90,9 @@
 		font-size: 36rpx;
 		color: #8f8f94;
 	}
-	
-	
-	
+
+
+
 	.demo-uni-row {
 		margin-bottom: 10px;
 		/* QQ、抖音小程序文档写有 :host，但实测不生效 */
@@ -119,31 +101,30 @@
 		display: block;
 		/* #endif */
 	}
-	
+
 	/* 支付宝小程序没有 demo-uni-row 层级 */
 	/* 微信小程序使用了虚拟化节点，没有 demo-uni-row 层级 */
 	/* #ifdef MP-ALIPAY || MP-WEIXIN */
 	/deep/ .uni-row {
 		margin-bottom: 10px;
 	}
+
 	/* #endif */
-	
+
 	.demo-uni-col {
 		height: 36px;
 		border-radius: 4px;
 	}
-	
+
 	.dark_deep {
 		background-color: #99a9bf;
 	}
-	
+
 	.dark {
 		background-color: #d3dce6;
 	}
-	
+
 	.light {
 		background-color: #e5e9f2;
 	}
-	
-	
 </style>

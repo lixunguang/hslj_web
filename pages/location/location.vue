@@ -1,9 +1,11 @@
 <template>
 	<view class="content">
-		<image class="logo" src="/static/logo.png"></image>
-		<view class="text-area">
-			<text class="title">{{title}}</text>
-		</view>
+
+		<uni-row class="demo-uni-row" :width="nvueWidth">
+			<uni-col :span="24">
+				<button type="default" @click="goto('/pages/location/add')">增加新地点</button>
+			</uni-col>
+		</uni-row>
 
 
 		<view class="image-list">
@@ -11,7 +13,8 @@
 				<uni-row class="demo-uni-row" :width="nvueWidth">
 					<uni-col :span="8">
 						<view class="image-content">
-							<image style="height: 50px;width: 50px; background-color: #eeeeee;" :src="src" @error="imageError"></image>
+							<image style="height: 50px;width: 50px; background-color: #eeeeee;" :src="src"
+								@error="imageError"></image>
 						</view>
 					</uni-col>
 
@@ -23,7 +26,7 @@
 						<span class="demo-uni-col light">{{item.Desc}}</span>
 					</uni-col>
 				</uni-row>
-				
+
 				<uni-row class="demo-uni-row" :width="nvueWidth">
 					<uni-col :span="8">
 						<span class="demo-uni-col dark">{{item.Latitude}}</span>
@@ -32,7 +35,7 @@
 					<uni-col :span="8">
 						<span class="demo-uni-col light">{{item.Longitude}}</span>
 					</uni-col>
-					
+
 					<uni-col :span="8">
 						<span class="demo-uni-col dark">{{item.Rating}}</span>
 					</uni-col>
@@ -40,45 +43,11 @@
 
 
 			</view>
-			
-
-
-
 		</view>
 
-<uni-list>
-	<uni-list-item  title="列表文字" >qqq</uni-list-item>
-	<uni-list-item :disabled="true" title="列表禁用状态" ></uni-list-item>
-</uni-list>
-			 
-	<uni-list>
-		<uni-list :border="true">
-			<!-- 显示圆形头像 -->
-			<uni-list-chat :avatar-circle="true" title="uni-app" avatar="https://qiniu-web-assets.dcloud.net.cn/unidoc/zh/unicloudlogo.png" note="您收到一条新的消息" time="2020-02-02 20:20" ></uni-list-chat>
-			<!-- 右侧带角标 -->
-			<uni-list-chat title="uni-app" avatar="https://qiniu-web-assets.dcloud.net.cn/unidoc/zh/unicloudlogo.png" note="您收到一条新的消息" time="2020-02-02 20:20" badge-text="12"></uni-list-chat>
-			<!-- 头像显示圆点 -->
-			<uni-list-chat title="uni-app" avatar="https://qiniu-web-assets.dcloud.net.cn/unidoc/zh/unicloudlogo.png" note="您收到一条新的消息" time="2020-02-02 20:20" badge-positon="left" badge-text="dot"></uni-list-chat>
-			<!-- 头像显示角标 -->
-			<uni-list-chat title="uni-app" avatar="https://qiniu-web-assets.dcloud.net.cn/unidoc/zh/unicloudlogo.png" note="您收到一条新的消息" time="2020-02-02 20:20" badge-positon="left" badge-text="99"></uni-list-chat>
-			<!-- 显示多头像 -->
-			<uni-list-chat title="uni-app" :avatar-list="avatarList" note="您收到一条新的消息" time="2020-02-02 20:20" badge-positon="left" badge-text="dot"></uni-list-chat>
-			<!-- 自定义右侧内容 -->
-			<uni-list-chat title="uni-app" :avatar-list="avatarList" note="您收到一条新的消息" time="2020-02-02 20:20" badge-positon="left" badge-text="dot">
-				<view class="chat-custom-right">
-					<text class="chat-custom-text">刚刚</text>
-					<!-- 需要使用 uni-icons 请自行引入 -->
-					<uni-icons type="star-filled" color="#999" size="18"></uni-icons>
-				</view>
-			</uni-list-chat>
-		</uni-list>
-	</uni-list>
-	
-
-			
 
 	</view>
-	
+
 </template>
 
 <script>
@@ -87,13 +56,6 @@
 			return {
 				title: 'location',
 				array: [],
-				avatarList: [{
-								url: 'https://qiniu-web-assets.dcloud.net.cn/unidoc/zh/unicloudlogo.png'
-							}, {
-								url: 'https://qiniu-web-assets.dcloud.net.cn/unidoc/zh/unicloudlogo.png'
-							}, {
-								url: 'https://qiniu-web-assets.dcloud.net.cn/unidoc/zh/unicloudlogo.png'
-							}],
 				src: 'https://cdnwww.simapps.com/upload/image/20230507/3c44170f-2098-4199-afd0-c5e5f176b362.png'
 			}
 
@@ -134,7 +96,12 @@
 					}
 				})
 			},
-
+			goto(url) {
+				console.log(url)
+				uni.navigateTo({
+					url: url
+				})
+			}
 
 		}
 	}
@@ -202,21 +169,5 @@
 
 	.light {
 		background-color: #e5e9f2;
-	}
-	
-	
-	.chat-custom-right {
-		flex: 1;
-		/* #ifndef APP-NVUE */
-		display: flex;
-		/* #endif */
-		flex-direction: column;
-		justify-content: space-between;
-		align-items: flex-end;
-	}
-	
-	.chat-custom-text {
-		font-size: 12px;
-		color: #999;
 	}
 </style>

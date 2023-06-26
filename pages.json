@@ -31,6 +31,21 @@
 				}
 			}
 		},{
+			"path": "pages/location/add",
+			"style": {
+				"navigationBarTitleText": "add",//add。
+				"app-plus": {
+					"titleNView": {
+						"buttons": [{
+							"text": "\ue534",
+							"fontSrc": "/static/uni.ttf",
+							"fontSize": "22px",
+							"color": "#FFFFFF"
+						}]
+					}
+				}
+			}
+		},{
 			"path": "pages/resource/resource",
 			"style": {
 				"navigationBarTitleText": "欣赏",//毽之美，一切关于美的事物，包括基础知识介绍。
