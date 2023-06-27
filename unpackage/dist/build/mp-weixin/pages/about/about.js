@@ -1,1 +1,0 @@
-"use strict";const t=require("../../common/vendor.js"),e={data:()=>({title:"about"}),onLoad(){},methods:{}};const o=t._export_sfc(e,[["render",function(e,o,r,n,a,c){return{a:t.t(a.title)}}]]);wx.createPage(o);
