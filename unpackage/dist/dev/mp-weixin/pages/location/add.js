@@ -1,78 +1,47 @@
 "use strict";
 const common_vendor = require("../../common/vendor.js");
-function getDate(type) {
-  const date = /* @__PURE__ */ new Date();
-  let year = date.getFullYear();
-  let month = date.getMonth() + 1;
-  let day = date.getDate();
-  if (type === "start") {
-    year = year - 10;
-  } else if (type === "end") {
-    year = year + 10;
-  }
-  month = month > 9 ? month : "0" + month;
-  day = day > 9 ? day : "0" + day;
-  return `${year}-${month}-${day}`;
-}
 const _sfc_main = {
   data() {
     return {
-      txt: "uni-app可以同时发布成原生App、小程序、H5，邀请你一起体验！",
-      array: [{
-        name: "中国"
+      txt: "",
+      number: [{
+        num: "0~10"
       }, {
-        name: "美国"
+        num: "10~20"
       }, {
-        name: "巴西"
+        num: "20~50"
       }, {
-        name: "日本"
+        num: "50~100"
+      }, {
+        num: "100~"
       }],
+      schedule: ["每天", "周六和周日", "周一", "周二", "周三", "周四", "周五", "周六", "周日", "不固定，需要约时间"],
       index: 0,
-      date: getDate({
-        format: true
-      }),
-      startDate: getDate("start"),
-      endDate: getDate("end"),
       time: "00:00"
     };
   },
   onLoad() {
-    this.onbtnclick();
   },
   methods: {
     btnclick() {
       console.log("11array");
-      console.log(this.txt);
+      this.addLocation();
     },
-    imageError: function(e) {
-      console.error("image发生error事件，携带值为" + e.detail.errMsg);
-    },
-    bindPickerChange: function(e) {
-      console.log("picker发送选择改变，携带值为：" + e.detail.value);
-      this.index = e.detail.value;
-    },
-    onbtnclick() {
-      console.log("onbtnclickonbtnclickonbtnclick Launch");
+    addLocation() {
+      console.log("add location -->");
       common_vendor.index.request({
-        url: "https://golang-5aqo-57309-9-1301228508.sh.run.tcloudbase.com/admin/GetLocation",
+        url: "https://golang-5aqo-57309-9-1301228508.sh.run.tcloudbase.com/admin/location/add",
         method: "POST",
         data: {
-          text: "uni.request",
-          date: getDate({
-            format: true
-          }),
-          startDate: getDate("start"),
-          endDate: getDate("end"),
-          time: "12:01"
+          name: "仰山公园",
+          desc: "一个有很多雕塑的公园"
         },
         header: {
           "custom-header": ""
           //自定义请求头信息
         },
         success: (res) => {
-          console.log(res.data.data);
-          this.array = res.data.data;
-          this.text = "request success";
+          console.log(res);
         },
         fail: () => {
           common_vendor.index.showToast({
@@ -82,7 +51,25 @@ const _sfc_main = {
         }
       });
     },
-    bindTimeChange: function(e) {
+    imageError: function(e) {
+      console.error("image发生error事件，携带值为" + e.detail.errMsg);
+    },
+    bindPickerChange1: function(e) {
+      console.log("picker1发送选择改变，携带值为：" + e.detail.value);
+      this.index = e.detail.value;
+    },
+    bindPickerChange2: function(e) {
+      console.log("picke2r发送选择改变，携带值为：" + e.detail.value);
+      this.index = e.detail.value;
+    },
+    bindPickerChange3: function(e) {
+      console.log("picke3r发送选择改变，携带值为：" + e.detail.value);
+      this.index = e.detail.value;
+    },
+    bindTimeChange1: function(e) {
+      this.time = e.detail.value;
+    },
+    bindTimeChange2: function(e) {
       this.time = e.detail.value;
     }
   }
@@ -114,11 +101,11 @@ function _sfc_render(_ctx, _cache, $props, $setup, $data, $options) {
       span: 18
     }),
     g: common_vendor.p({
-      span: 12
+      span: 6
     }),
     h: common_vendor.t($data.time),
     i: $data.time,
-    j: common_vendor.o((...args) => $options.bindTimeChange && $options.bindTimeChange(...args)),
+    j: common_vendor.o((...args) => $options.bindTimeChange1 && $options.bindTimeChange1(...args)),
     k: common_vendor.p({
       span: 5
     }),
@@ -127,25 +114,31 @@ function _sfc_render(_ctx, _cache, $props, $setup, $data, $options) {
     }),
     m: common_vendor.t($data.time),
     n: $data.time,
-    o: common_vendor.o((...args) => $options.bindTimeChange && $options.bindTimeChange(...args)),
+    o: common_vendor.o((...args) => $options.bindTimeChange2 && $options.bindTimeChange2(...args)),
     p: common_vendor.p({
       span: 5
     }),
-    q: common_vendor.t($data.array[$data.index].name),
-    r: common_vendor.o((...args) => $options.bindPickerChange && $options.bindPickerChange(...args)),
-    s: $data.index,
-    t: $data.array,
-    v: common_vendor.p({
-      span: 24
+    q: common_vendor.p({
+      span: 6
     }),
-    w: common_vendor.t($data.array[$data.index].name),
-    x: common_vendor.o((...args) => $options.bindPickerChange && $options.bindPickerChange(...args)),
-    y: $data.index,
-    z: $data.array,
-    A: common_vendor.p({
-      span: 24
+    r: common_vendor.t($data.number[$data.index].num),
+    s: common_vendor.o((...args) => $options.bindPickerChange2 && $options.bindPickerChange2(...args)),
+    t: $data.index,
+    v: $data.number,
+    w: common_vendor.p({
+      span: 12
     }),
-    B: common_vendor.o(($event) => $options.btnclick())
+    x: common_vendor.p({
+      span: 6
+    }),
+    y: common_vendor.t($data.schedule[$data.index]),
+    z: common_vendor.o((...args) => $options.bindPickerChange3 && $options.bindPickerChange3(...args)),
+    A: $data.index,
+    B: $data.schedule,
+    C: common_vendor.p({
+      span: 12
+    }),
+    D: common_vendor.o(($event) => $options.btnclick())
   };
 }
 const MiniProgramPage = /* @__PURE__ */ common_vendor._export_sfc(_sfc_main, [["render", _sfc_render], ["__file", "C:/Users/lixun/Desktop/hslj/hslj_web/pages/location/add.vue"]]);

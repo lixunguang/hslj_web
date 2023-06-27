@@ -49,7 +49,7 @@
 
 		onReady() {
 			console.log('11')
-			this.onbtnclick()
+			this.getLocationList()
 		},
 
 		methods: {
@@ -57,10 +57,10 @@
 				console.error('image发生error事件，携带值为' + e.detail.errMsg)
 			},
 
-			onbtnclick() {
-				console.log('onbtnclickonbtnclickonbtnclick Launch')
+			getLocationList() {
+				console.log('get location list -->')
 				uni.request({
-					url: 'https://golang-5aqo-57309-9-1301228508.sh.run.tcloudbase.com/admin/GetLocation',
+					url: 'https://golang-5aqo-57309-9-1301228508.sh.run.tcloudbase.com/admin/location/list',
 					method: 'POST',
 					data: {
 						text: 'uni.request'

@@ -8,103 +8,97 @@
 		</uni-row>
 
 		<uni-row class=" demo-uni-row">
-			<uni-col :span="6">
-				<view>名字</view>
-			</uni-col>
-			<uni-col :span="18">
-				<input class="uni-input" placeholder-style="color:#F76260" focus placeholder="地点名字" />
-			</uni-col>
 
 			<uni-col :span="6">
-				<view>描述</view>
+				<view>名字：</view>
 			</uni-col>
 			<uni-col :span="18">
-				<textarea class="textarea" placeholder-style="color:#aaaaaa" placeholder="描述" v-model="txt"></textarea>
+				<input class="uni-input-border" style="" styplaceholder-style="color:#aaaaaa" focus
+					placeholder="地点名字" />
+			</uni-col>
+
+			<uni-col :span="6">
+				<view>描述：</view>
+			</uni-col>
+			<uni-col :span="18">
+				<textarea class="uni-textarea-border" placeholder-style="color:#aaaaaa" placeholder="描述"
+					v-model="txt"></textarea>
 			</uni-col>
 
 
-			<uni-col :span="12">
-				<view>选择开始-结束时间</view>
+			<uni-col :span="6">
+				<view>活动时间：</view>
 			</uni-col>
 			<uni-col :span="5">
-				<picker mode="time" :value="time" start="00:00" end="23:59" @change="bindTimeChange">
-					<view class="uni-input">{{time}}</view>
+				<picker mode="time" :value="time" start="00:00" end="23:59" @change="bindTimeChange1">
+					<view class="uni-input-border">{{time}}</view>
 				</picker>
 			</uni-col>
 			<uni-col :span="2">
-				<view>~</view>
+				<view>至</view>
 			</uni-col>
 			<uni-col :span="5">
-				<picker mode="time" :value="time" start="00:00" end="23:59" @change="bindTimeChange">
-					<view class="uni-input">{{time}}</view>
+				<picker mode="time" :value="time" start="00:00" end="23:59" @change="bindTimeChange2">
+					<view class="uni-input-border">{{time}}</view>
 				</picker>
 			</uni-col>
+
 		</uni-row>
 
-
-		<view>系统中1。</view>
 
 		<uni-row class=" demo-uni-row">
-			<uni-col :span="24">
-				<picker @change="bindPickerChange" :value="index" :range="array" range-key="name">
-					<view class="uni-input">{{array[index].name}}</view>
-					<view class="uni-input">1111</view>
-				</picker>
+			<uni-col :span="6">
+				<view>参与人数：</view>
 			</uni-col>
 
-			<uni-col :span="24">
-				<picker mode="selector" @change="bindPickerChange" :value="index" :range="array" range-key="name">
-					<view class="uni-input">{{array[index].name}}</view>
+			<uni-col :span="12">
+				<picker @change="bindPickerChange2" :value="index" :range="number" range-key="num">
+					<view class="uni-input-border">{{number[index].num}}</view>
 				</picker>
 			</uni-col>
 		</uni-row>
 
-		<view>系统中2。</view>
-<button type="default" @click="btnclick()">clickme</button>
+		<uni-row class=" demo-uni-row">
+			<uni-col :span="6">
+				<view>频次：</view>
+			</uni-col>
+
+			<uni-col :span="12">
+				<picker @change="bindPickerChange3" :value="index" :range="schedule">
+					<view class="uni-input-border">{{schedule[index]}}</view>
+				</picker>
+			</uni-col>
+		</uni-row>
+
+
+
+
+		<button type="default" @click="btnclick()">调试</button>
 	</view>
 
 </template>
 
 <script>
-	function getDate(type) {
-		const date = new Date();
-
-		let year = date.getFullYear();
-		let month = date.getMonth() + 1;
-		let day = date.getDate();
-
-		if (type === 'start') {
-			year = year - 10;
-		} else if (type === 'end') {
-			year = year + 10;
-		}
-		month = month > 9 ? month : '0' + month;;
-		day = day > 9 ? day : '0' + day;
-
-		return `${year}-${month}-${day}`;
-	}
-
 	export default {
 		data() {
 			return {
-				txt: 'uni-app可以同时发布成原生App、小程序、H5，邀请你一起体验！',
-				array: [{
-					name: '中国'
+				txt: '',
+				number: [{
+					num: '0~10'
 				}, {
-					name: '美国'
+					num: '10~20'
 				}, {
-					name: '巴西'
+					num: '20~50'
 				}, {
-					name: '日本'
+					num: '50~100'
+				}, {
+					num: '100~'
 				}],
+
+				schedule: ['每天', '周六和周日', '周一', '周二', '周三', '周四', '周五', '周六', '周日', '不固定，需要约时间'],
+
 				index: 0,
-				
-				
-				date: getDate({
-					format: true
-				}),
-				startDate: getDate('start'),
-				endDate: getDate('end'),
+
 				time: '00:00'
 
 			};
@@ -112,46 +106,37 @@
 		},
 
 		onLoad() {
-		 
-			this.onbtnclick()
+
+			//this.onbtnclick()
 		},
 
 		methods: {
-			btnclick(){
+			btnclick() {
 				console.log("11array")
-		console.log(this.txt)
 
-				
+				this.addLocation();
+
 			},
-			imageError: function(e) {
-				console.error('image发生error事件，携带值为' + e.detail.errMsg)
-			},
-			bindPickerChange: function(e) {
-				console.log('picker发送选择改变，携带值为：' + e.detail.value)
-				this.index = e.detail.value
-			},
-			onbtnclick() {
-				console.log('onbtnclickonbtnclickonbtnclick Launch')
+
+			addLocation() {
+				console.log('add location -->')
 				uni.request({
-					url: 'https://golang-5aqo-57309-9-1301228508.sh.run.tcloudbase.com/admin/GetLocation',
+					url: 'https://golang-5aqo-57309-9-1301228508.sh.run.tcloudbase.com/admin/location/add',
 					method: 'POST',
 					data: {
-						text: 'uni.request',
-						date: getDate({
-							format: true
-						}),
-						startDate: getDate('start'),
-						endDate: getDate('end'),
-						time: '12:01'
+						name: '仰山公园',
+						desc: '一个有很多雕塑的公园',
+
 					},
 					header: {
 						'custom-header': '' //自定义请求头信息
 					},
 					success: (res) => {
-						console.log(res.data.data);
-						this.array = res.data.data
+						//	if (res.statusCode == 200) {
+						//		}
 
-						this.text = 'request success';
+						console.log(res)
+
 					},
 					fail: () => {
 						uni.showToast({
@@ -162,9 +147,33 @@
 				})
 			},
 
-			bindTimeChange: function(e) {
+
+
+			imageError: function(e) {
+				console.error('image发生error事件，携带值为' + e.detail.errMsg)
+			},
+			bindPickerChange1: function(e) {
+				console.log('picker1发送选择改变，携带值为：' + e.detail.value)
+				this.index = e.detail.value
+			},
+
+			bindPickerChange2: function(e) {
+				console.log('picke2r发送选择改变，携带值为：' + e.detail.value)
+				this.index = e.detail.value
+			},
+			
+			bindPickerChange3: function(e) {
+				console.log('picke3r发送选择改变，携带值为：' + e.detail.value)
+				this.index = e.detail.value
+			},
+
+			bindTimeChange1: function(e) {
+				this.time = e.detail.value
+			},
+			bindTimeChange2: function(e) {
 				this.time = e.detail.value
 			}
+			
 
 		}
 	}
@@ -174,8 +183,8 @@
 	.content {
 		display: flex;
 		flex-direction: column;
-		align-items: center;
-		justify-content: center;
+		align-items: left;
+		justify-content: left;
 	}
 
 	.logo {
@@ -212,7 +221,7 @@
 	/* 支付宝小程序没有 demo-uni-row 层级 */
 	/* 微信小程序使用了虚拟化节点，没有 demo-uni-row 层级 */
 	/* #ifdef MP-ALIPAY || MP-WEIXIN */
-	/deep/ .uni-row {
+	.uni-row {
 		margin-bottom: 10px;
 	}
 
@@ -233,5 +242,22 @@
 
 	.light {
 		background-color: #e5e9f2;
+	}
+
+
+	.uni-input-border,
+	.uni-textarea-border {
+		width: 80%;
+		font-size: 14px;
+		color: #666;
+		border: 1px #e5e5e5 solid;
+		border-radius: 5px;
+		box-sizing: border-box;
+		padding: 0 10px;
+	}
+
+	.uni-input-border {
+		height: 35px;
+
 	}
 </style>
