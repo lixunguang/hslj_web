@@ -59,7 +59,7 @@
         "usingComponents" : true,
         "permission" : {
             "scope.userLocation" : {
-                "desc" : "本程序是让用户收藏自己喜爱的的地点并给出评论，所以需要位置接口"
+                "desc" : "本程序是让用户收藏自己喜爱的的地点"
             }
         }
     },

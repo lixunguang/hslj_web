@@ -1,58 +1,148 @@
 <template>
 	<view class="content">
 
+		<uni-row class=" demo-uni-row">
+			<image style="width: 200px; height: 200px; background-color: #eeeeee;"
+				src="https://gss0.baidu.com/9fo3dSag_xI4khGko9WTAnF6hhy/zhidao/pic/item/7dd98d1001e93901eb1513967cec54e736d19607.jpg">
+			</image>
+		</uni-row>
 
-		<view class="page-body">
-			<view class="page-section page-section-gap">
-				<map style="width: 100%; height: 300px;" :latitude="latitude" :longitude="longitude" :markers="covers">
-				</map>
-			</view>
-		</view>
+		<uni-row class=" demo-uni-row">
+			<uni-col :span="6">
+				<view>名字</view>
+			</uni-col>
+			<uni-col :span="18">
+				<input class="uni-input" placeholder-style="color:#F76260" focus placeholder="地点名字" />
+			</uni-col>
 
+			<uni-col :span="6">
+				<view>描述</view>
+			</uni-col>
+			<uni-col :span="18">
+				<textarea class="textarea" placeholder-style="color:#aaaaaa" placeholder="描述" v-model="txt"></textarea>
+			</uni-col>
+
+
+			<uni-col :span="12">
+				<view>选择开始-结束时间</view>
+			</uni-col>
+			<uni-col :span="5">
+				<picker mode="time" :value="time" start="00:00" end="23:59" @change="bindTimeChange">
+					<view class="uni-input">{{time}}</view>
+				</picker>
+			</uni-col>
+			<uni-col :span="2">
+				<view>~</view>
+			</uni-col>
+			<uni-col :span="5">
+				<picker mode="time" :value="time" start="00:00" end="23:59" @change="bindTimeChange">
+					<view class="uni-input">{{time}}</view>
+				</picker>
+			</uni-col>
+		</uni-row>
+
+
+		<view>系统中1。</view>
+
+		<uni-row class=" demo-uni-row">
+			<uni-col :span="24">
+				<picker @change="bindPickerChange" :value="index" :range="array" range-key="name">
+					<view class="uni-input">{{array[index].name}}</view>
+					<view class="uni-input">1111</view>
+				</picker>
+			</uni-col>
+
+			<uni-col :span="24">
+				<picker mode="selector" @change="bindPickerChange" :value="index" :range="array" range-key="name">
+					<view class="uni-input">{{array[index].name}}</view>
+				</picker>
+			</uni-col>
+		</uni-row>
+
+		<view>系统中2。</view>
+<button type="default" @click="btnclick()">clickme</button>
 	</view>
 
 </template>
 
 <script>
+	function getDate(type) {
+		const date = new Date();
+
+		let year = date.getFullYear();
+		let month = date.getMonth() + 1;
+		let day = date.getDate();
+
+		if (type === 'start') {
+			year = year - 10;
+		} else if (type === 'end') {
+			year = year + 10;
+		}
+		month = month > 9 ? month : '0' + month;;
+		day = day > 9 ? day : '0' + day;
+
+		return `${year}-${month}-${day}`;
+	}
+
 	export default {
 		data() {
 			return {
-	
-				id: 0,
-				title: 'map',
-				latitude: 39.909,
-				longitude: 116.39742,
-				covers: [{
-					latitude: 39.909,
-					longitude: 116.39742,
-					iconPath: '../../../static/location.png'
+				txt: 'uni-app可以同时发布成原生App、小程序、H5，邀请你一起体验！',
+				array: [{
+					name: '中国'
 				}, {
-					latitude: 39.90,
-					longitude: 116.39,
-					iconPath: '../../../static/location.png'
-				}]
+					name: '美国'
+				}, {
+					name: '巴西'
+				}, {
+					name: '日本'
+				}],
+				index: 0,
+				
+				
+				date: getDate({
+					format: true
+				}),
+				startDate: getDate('start'),
+				endDate: getDate('end'),
+				time: '00:00'
 
-			}
+			};
 
 		},
 
 		onLoad() {
-			console.log('11')
+		 
 			this.onbtnclick()
 		},
 
 		methods: {
+			btnclick(){
+				console.log("11array")
+		console.log(this.txt)
+
+				
+			},
 			imageError: function(e) {
 				console.error('image发生error事件，携带值为' + e.detail.errMsg)
 			},
-
+			bindPickerChange: function(e) {
+				console.log('picker发送选择改变，携带值为：' + e.detail.value)
+				this.index = e.detail.value
+			},
 			onbtnclick() {
 				console.log('onbtnclickonbtnclickonbtnclick Launch')
 				uni.request({
 					url: 'https://golang-5aqo-57309-9-1301228508.sh.run.tcloudbase.com/admin/GetLocation',
 					method: 'POST',
 					data: {
-						text: 'uni.request'
+						text: 'uni.request',
+						date: getDate({
+							format: true
+						}),
+						startDate: getDate('start'),
+						endDate: getDate('end'),
+						time: '12:01'
 					},
 					header: {
 						'custom-header': '' //自定义请求头信息
@@ -72,6 +162,9 @@
 				})
 			},
 
+			bindTimeChange: function(e) {
+				this.time = e.detail.value
+			}
 
 		}
 	}
@@ -107,6 +200,7 @@
 
 
 	.demo-uni-row {
+		justify-content: left;
 		margin-bottom: 10px;
 		/* QQ、抖音小程序文档写有 :host，但实测不生效 */
 		/* 百度小程序没有 :host，需要设置block */
