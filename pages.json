@@ -62,9 +62,59 @@
 			}
 		},
 		{
-			"path": "pages/about/about",
+			"path": "pages/my/my",
 			"style": {
-				"navigationBarTitleText": "我的",//我的关注，足迹
+				"navigationBarTitleText": "我的",//我的关注，足迹，关于
+				"app-plus": {
+					"titleNView": {
+						"buttons": [{
+							"text": "\ue534",
+							"fontSrc": "/static/uni.ttf",
+							"fontSize": "22px",
+							"color": "#FFFFFF"
+						}]
+					}
+				}
+			}
+		},
+		{
+			"path": "pages/my/about",
+			"style": {
+				"navigationBarTitleText": "关于",
+				"app-plus": {
+					"titleNView": {
+						"buttons": [{
+							"text": "\ue534",
+							"fontSrc": "/static/uni.ttf",
+							"fontSize": "22px",
+							"color": "#FFFFFF"
+						}]
+					}
+				}
+			}
+		},
+		
+		{
+			"path": "pages/my/footprint",
+			"style": {
+				"navigationBarTitleText": "足迹",
+				"app-plus": {
+					"titleNView": {
+						"buttons": [{
+							"text": "\ue534",
+							"fontSrc": "/static/uni.ttf",
+							"fontSize": "22px",
+							"color": "#FFFFFF"
+						}]
+					}
+				}
+			}
+		},
+		
+		{
+			"path": "pages/my/favorite",
+			"style": {
+				"navigationBarTitleText": "收藏",
 				"app-plus": {
 					"titleNView": {
 						"buttons": [{
@@ -106,10 +156,10 @@
 				"selectedIconPath": "static/logo1.png",
 				"text": "资源"
 			}, {
-				"pagePath": "pages/about/about",
+				"pagePath": "pages/my/my",
 				"iconPath": "static/logo1.png",
 				"selectedIconPath": "static/logo1.png",
-				"text": "关于"
+				"text": "我的"
 			}
 		]
 	},
