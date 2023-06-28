@@ -31,6 +31,22 @@
 				}
 			}
 		},{
+			"path": "pages/location/detail",//public毽子场地列表（展示可以是地图方式）
+			"style": {
+				"navigationBarTitleText": "列表",
+				"app-plus": {
+					"titleNView": {
+						"buttons": [{
+							"text": "\ue534",
+							"fontSrc": "/static/uni.ttf",
+							"fontSize": "22px",
+							"color": "#FFFFFF"
+						}]
+					}
+				}
+			}
+		}
+		,{
 			"path": "pages/location/add",
 			"style": {
 				"navigationBarTitleText": "增加地点",//add。
