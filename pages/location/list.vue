@@ -10,7 +10,10 @@
 		<view class="image-list">
 			<view class="image-item" v-for="(item,index) in array" :key="index">
 				<uni-row class="demo-uni-row">
-					<uni-col :span="8">
+					<uni-col :span="1">
+						<span class="demo-uni-col dark">{{index+1}}</span>
+					</uni-col>
+					<uni-col :span="4">
 						<view class="image-content">
 							<image style="height: 50px;width: 50px; background-color: #eeeeee;" :src="src"
 								@error="imageError"></image>
@@ -21,7 +24,7 @@
 						<span class="demo-uni-col dark">{{item.name}}</span>
 					</uni-col>
 
-					<uni-col :span="8">
+					<uni-col :span="11">
 						<span class="demo-uni-col light">{{item.desc}}</span>
 					</uni-col>
 				</uni-row>
