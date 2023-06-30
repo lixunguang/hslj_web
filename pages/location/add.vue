@@ -25,6 +25,17 @@
 					v-model="txt"></textarea>
 			</uni-col>
 
+		<uni-row class=" demo-uni-row">
+			<uni-col :span="6">
+				<view>参与人数：</view>
+			</uni-col>
+
+			<uni-col :span="12">
+				<picker @change="bindPickerChange2" :value="index" :range="number" range-key="num">
+					<view class="uni-input-border">{{number[index].num}}</view>
+				</picker>
+			</uni-col>
+		</uni-row>
 
 			<uni-col :span="6">
 				<view>活动时间：</view>
@@ -46,17 +57,6 @@
 		</uni-row>
 
 
-		<uni-row class=" demo-uni-row">
-			<uni-col :span="6">
-				<view>参与人数：</view>
-			</uni-col>
-
-			<uni-col :span="12">
-				<picker @change="bindPickerChange2" :value="index" :range="number" range-key="num">
-					<view class="uni-input-border">{{number[index].num}}</view>
-				</picker>
-			</uni-col>
-		</uni-row>
 
 		<uni-row class=" demo-uni-row">
 			<uni-col :span="6">
@@ -73,7 +73,7 @@
 
 
 
-		<button type="default" @click="btnclick()">调试</button>
+		<button type="default" @click="btnclick()">提交</button>
 	</view>
 
 </template>
@@ -95,7 +95,7 @@
 					num: '100~'
 				}],
 
-				schedule: ['每天', '周六和周日', '周一', '周二', '周三', '周四', '周五', '周六', '周日', '不固定，需要约时间'],
+				schedule: ['每天', '周六和周日',  '不固定，需要约时间'],
 
 				index: 0,
 
