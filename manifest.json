@@ -44,7 +44,12 @@
             "ios" : {},
             /* SDK配置 */
             "sdkConfigs" : {
-                "maps" : {}
+                "maps" : {
+                    "baidu" : {
+                        "appkey_ios" : "",
+                        "appkey_android" : ""
+                    }
+                }
             }
         }
     },
@@ -59,7 +64,7 @@
         "usingComponents" : true,
         "permission" : {
             "scope.userLocation" : {
-                "desc" : "本程序是让用户收藏自己喜爱的的地点"
+                "desc" : "获取您的个人位置信息"
             }
         }
     },
@@ -75,5 +80,14 @@
     "uniStatistics" : {
         "enable" : false
     },
-    "vueVersion" : "3"
+    "vueVersion" : "3",
+    "h5" : {
+        "sdkConfigs" : {
+            "maps" : {
+                "qqmap" : {
+                    "key" : "LUSBZ-3ABWQ-HFH57-4SAJI-5GFFT-2LFYQ"
+                }
+            }
+        }
+    }
 }

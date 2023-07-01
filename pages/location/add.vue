@@ -1,22 +1,33 @@
 <template>
 	<view class="content">
 
-		<uni-row class=" demo-uni-row">
-			<image style="width: 200px; height: 200px; background-color: #eeeeee;"
-				src="https://gss0.baidu.com/9fo3dSag_xI4khGko9WTAnF6hhy/zhidao/pic/item/7dd98d1001e93901eb1513967cec54e736d19607.jpg">
-			</image>
+		<!-- 地图 -->
+		<uni-row class="location-row">
+			<map style="width: 100%; height: 300px;" :latitude="map_latitude" :longitude="map_longitude"
+				:markers="map_covers">
+			</map>
 		</uni-row>
 
-		<uni-row class=" demo-uni-row">
+		<!-- 地点信息 -->
+		<uni-row class=" location-row">
 
 			<uni-col :span="6">
 				<view>名字：</view>
 			</uni-col>
 			<uni-col :span="18">
-				<input class="uni-input-border" style="" styplaceholder-style="color:#aaaaaa" focus
-					placeholder="地点名字" />
+				<input class="uni-input-border" style="" styplaceholder-style=" color:#aaaaaa" focus
+					placeholder="地点名字,如:颐和园北宫门" />
 			</uni-col>
-
+		</uni-row>
+		<uni-row class=" location-row">
+			<uni-col :span="6">
+				<view>位置：</view>
+			</uni-col>
+			<uni-col :span="18" class=" pos">
+				<view>{{posStr}}</view>
+			</uni-col>
+		</uni-row>
+		<uni-row class=" location-row">
 			<uni-col :span="6">
 				<view>描述：</view>
 			</uni-col>
@@ -24,19 +35,21 @@
 				<textarea class="uni-textarea-border" placeholder-style="color:#aaaaaa" placeholder="描述"
 					v-model="txt"></textarea>
 			</uni-col>
+		</uni-row>
+		<uni-row class=" location-row">
 
-		<uni-row class=" demo-uni-row">
 			<uni-col :span="6">
 				<view>参与人数：</view>
 			</uni-col>
 
-			<uni-col :span="12">
+			<uni-col :span="18">
 				<picker @change="bindPickerChange2" :value="index" :range="number" range-key="num">
 					<view class="uni-input-border">{{number[index].num}}</view>
 				</picker>
 			</uni-col>
 		</uni-row>
 
+		<uni-row class=" location-row">
 			<uni-col :span="6">
 				<view>活动时间：</view>
 			</uni-col>
@@ -57,8 +70,7 @@
 		</uni-row>
 
 
-
-		<uni-row class=" demo-uni-row">
+		<uni-row class=" location-row">
 			<uni-col :span="6">
 				<view>频次：</view>
 			</uni-col>
@@ -72,16 +84,50 @@
 
 
 
-
-		<button type="default" @click="btnclick()">提交</button>
+		<uni-row style="align:center">
+			<button type="default" style="margin:50px" @click="commitClick()">提交</button>
+		</uni-row>
+		<rich-text :nodes="commitText" type="text" bindtap="tap"></rich-text>
 	</view>
 
 </template>
 
 <script>
+	//const {g_i} = require("../../common/common.js");
+	import common from '../../common/common.js';
+	//引入腾讯地图文件
+	import QQMapWX from '../../common/qqmap-wx-jssdk.min.js';
+	//var QQMapWX = require('../../common/qqmap-wx-jssdk.js');
+	var qqmapsdk;
+
+
+
+
+console.log(common.g_i)
 	export default {
 		data() {
 			return {
+				map_id: 0, // 使用 marker点击事件 需要填写id
+				map_title: 'map',
+				map_latitude: 39.909,
+				map_longitude: 116.39742,
+				map_covers: [{
+					latitude: 39.909,
+					longitude: 116.39742,
+					iconPath: '../../../static/location.png'
+				}, {
+					latitude: 39.90,
+					longitude: 116.39,
+					iconPath: '../../../static/location.png'
+				}],
+
+				posStr: '北京颐和园北宫门附近',
+				posNum: 5,
+				commitText: "",
+
+
+				data_image: '<div style="width:50px;height:50px;background-color:#aaaaaa"/>',
+				name: '',
 				txt: '',
 				number: [{
 					num: '0~10'
@@ -95,7 +141,7 @@
 					num: '100~'
 				}],
 
-				schedule: ['每天', '周六和周日',  '不固定，需要约时间'],
+				schedule: ['每天', '只周六和周日', '不固定，需要约时间'],
 
 				index: 0,
 
@@ -106,30 +152,63 @@
 		},
 
 		onLoad() {
+			     // 实例化API核心类
+			        qqmapsdk = new QQMapWX({
+			            key: 'LUSBZ-3ABWQ-HFH57-4SAJI-5GFFT-2LFYQ'
+			        });
+					
+			this.getCommit();
 
-			//this.onbtnclick()
 		},
-
+		onPullDownRefresh() {
+			console.log('update refresh')
+		},
+		updated() {
+			console.log('update ----')
+		},
 		methods: {
-			btnclick() {
-				console.log("11array")
+			getCommit() {
+				console.log('commit')
+				this.commitText =
+					"<div style='display:none;margin:20px;text-align: center;color:#aaaaaa;font-size:12px'>您已经提交了<strong> " +
+					this.posNum + " </strong>个地点</div>";
+			},
+			commitClick() {
 
-				this.addLocation();
+				//this.$forceUpdate();
+				console.log('commitClick -->')
 
+				//this.addLocation();
+				
+				 // 调用接口
+			/*
+			qqmapsdk.search({
+			       keyword: '酒店',
+			       success: function (res) {
+			           console.log(res);
+			       },
+			       fail: function (res) {
+			           console.log(res);
+			       },
+			   complete: function (res) {
+			       console.log(res);
+			   }
+			});	 
+*/
 			},
 
 			addLocation() {
 				console.log('add location -->')
 				uni.request({
-					url: 'https://golang-5aqo-57309-9-1301228508.sh.run.tcloudbase.com/admin/location/add',
+					url: 'https://golang-5aqo-57309-9-1301228508.sh.run.tcloudbase.com/v1/location/add',
 					method: 'POST',
 					data: {
-						name: '仰山公园',
+						name: '仰山公园12',
 						desc: '一个有很多雕塑的公园',
 
 					},
 					header: {
-						'custom-header': '' //自定义请求头信息
+
 					},
 					success: (res) => {
 						//	if (res.statusCode == 200) {
@@ -161,7 +240,7 @@
 				console.log('picke2r发送选择改变，携带值为：' + e.detail.value)
 				this.index = e.detail.value
 			},
-			
+
 			bindPickerChange3: function(e) {
 				console.log('picke3r发送选择改变，携带值为：' + e.detail.value)
 				this.index = e.detail.value
@@ -173,7 +252,7 @@
 			bindTimeChange2: function(e) {
 				this.time = e.detail.value
 			}
-			
+
 
 		}
 	}
@@ -187,77 +266,41 @@
 		justify-content: left;
 	}
 
-	.logo {
-		height: 200rpx;
-		width: 200rpx;
-		margin-top: 200rpx;
-		margin-left: auto;
-		margin-right: auto;
-		margin-bottom: 50rpx;
-	}
-
-	.text-area {
-		display: flex;
-		justify-content: center;
-	}
-
-	.title {
-		font-size: 36rpx;
-		color: #8f8f94;
-	}
-
-
-
-	.demo-uni-row {
+	.location-row {
 		justify-content: left;
+		margin-top: 10px;
 		margin-bottom: 10px;
 		/* QQ、抖音小程序文档写有 :host，但实测不生效 */
 		/* 百度小程序没有 :host，需要设置block */
 		/* #ifdef MP-TOUTIAO || MP-QQ || MP-BAIDU */
 		display: block;
 		/* #endif */
+		text-align: center;
 	}
-
-	/* 支付宝小程序没有 demo-uni-row 层级 */
-	/* 微信小程序使用了虚拟化节点，没有 demo-uni-row 层级 */
-	/* #ifdef MP-ALIPAY || MP-WEIXIN */
-	.uni-row {
-		margin-bottom: 10px;
-	}
-
-	/* #endif */
-
-	.demo-uni-col {
-		height: 36px;
-		border-radius: 4px;
-	}
-
-	.dark_deep {
-		background-color: #99a9bf;
-	}
-
-	.dark {
-		background-color: #d3dce6;
-	}
-
-	.light {
-		background-color: #e5e9f2;
-	}
-
 
 	.uni-input-border,
 	.uni-textarea-border {
-		width: 80%;
-		font-size: 14px;
+		width: 90%;
+		font-size: 12px;
 		color: #666;
 		border: 1px #e5e5e5 solid;
 		border-radius: 5px;
 		box-sizing: border-box;
 		padding: 0 10px;
+		text-align: left;
 	}
 
 	.uni-input-border {
 		height: 35px;
 
+	}
+
+	.pos {
+		text-align: left;
+	}
+
+	.commit {
+		margin: 50px;
+		text-align: center;
 	}
 </style>

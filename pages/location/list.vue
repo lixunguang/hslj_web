@@ -1,7 +1,7 @@
 <template>
 	<view class="content">
 
-		<uni-row class="demo-uni-row">
+		<uni-row class="add_location">
 			<uni-col :span="24">
 				<button type="default" @click="goto('/pages/location/add')">增加新地点</button>
 			</uni-col>
@@ -63,13 +63,13 @@
 			getLocationList() {
 				console.log('get location list -->')
 				uni.request({
-					url: 'https://golang-5aqo-57309-9-1301228508.sh.run.tcloudbase.com/admin/location/list',
+					url: 'https://golang-5aqo-57309-9-1301228508.sh.run.tcloudbase.com/v1/location/get',
 					method: 'POST',
 					data: {
-						text: 'uni.request'
+						"location_code": 34
 					},
 					header: {
-						'custom-header': '' //自定义请求头信息
+						'content-type': 'application/json'
 					},
 					success: (res) => {
 						console.log(res.data.data);
@@ -97,6 +97,14 @@
 </script>
 
 <style>
+
+	.add_location {
+		position: sticky;
+		width: 100%;
+		top:40px;
+		z-index: 3;
+	}
+
 	.content {
 		display: flex;
 		flex-direction: column;

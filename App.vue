@@ -8,6 +8,10 @@
 		},
 		onHide: function() {
 			console.log('App Hide')
+		},
+		globalData:{
+			d1:"sads",
+			d2:113
 		}
 	}
 </script>
