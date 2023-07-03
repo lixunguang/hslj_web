@@ -33,7 +33,7 @@
 		},{
 			"path": "pages/location/detail",//public毽子场地列表（展示可以是地图方式）
 			"style": {
-				"navigationBarTitleText": "列表",
+				"navigationBarTitleText": "详情",
 				"app-plus": {
 					"titleNView": {
 						"buttons": [{

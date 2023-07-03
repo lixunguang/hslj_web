@@ -2,11 +2,11 @@
 	<view class="content">
 
 		<!-- 地图 -->
-		<uni-row class="location-row">
+
 			<map style="width: 100%; height: 300px;" :latitude="map_latitude" :longitude="map_longitude"
 				:markers="map_covers">
 			</map>
-		</uni-row>
+
 
 		<!-- 地点信息 -->
 		<uni-row class=" location-row">
@@ -95,15 +95,13 @@
 <script>
 	//const {g_i} = require("../../common/common.js");
 	import common from '../../common/common.js';
+	
 	//引入腾讯地图文件
 	import QQMapWX from '../../common/qqmap-wx-jssdk.min.js';
-	//var QQMapWX = require('../../common/qqmap-wx-jssdk.js');
 	var qqmapsdk;
 
 
-
-
-console.log(common.g_i)
+	console.log(common.g_i)
 	export default {
 		data() {
 			return {
@@ -114,11 +112,11 @@ console.log(common.g_i)
 				map_covers: [{
 					latitude: 39.909,
 					longitude: 116.39742,
-					iconPath: '../../../static/location.png'
+					iconPath: '/static/location.png'
 				}, {
 					latitude: 39.90,
 					longitude: 116.39,
-					iconPath: '../../../static/location.png'
+					iconPath: '/static/location.png'
 				}],
 
 				posStr: '北京颐和园北宫门附近',
@@ -152,12 +150,13 @@ console.log(common.g_i)
 		},
 
 		onLoad() {
-			     // 实例化API核心类
-			        qqmapsdk = new QQMapWX({
-			            key: 'LUSBZ-3ABWQ-HFH57-4SAJI-5GFFT-2LFYQ'
-			        });
-					
-			this.getCommit();
+			// 实例化API核心类
+			qqmapsdk = new QQMapWX({
+				key: 'LUSBZ-3ABWQ-HFH57-4SAJI-5GFFT-2LFYQ'
+			});
+
+			this.getCommitInfo();
+
 
 		},
 		onPullDownRefresh() {
@@ -166,59 +165,70 @@ console.log(common.g_i)
 		updated() {
 			console.log('update ----')
 		},
-		
-		
-	 
-		 
 		methods: {
-			getCommit() {
+			getCommitInfo() {
 				console.log('commit')
 				this.commitText =
 					"<div style='display:none;margin:20px;text-align: center;color:#aaaaaa;font-size:12px'>您已经提交了<strong> " +
 					this.posNum + " </strong>个地点</div>";
 			},
+
+			moveToLocation() {
+				var that = this;
+				wx.chooseLocation({
+					success: function(res) {
+						console.log(res.name);
+						//选择地点之后返回到原来页面
+						//  wx.navigateTo({
+						// url: "/pages/index/index?address="+res.name
+						// });
+					},
+					fail: function(err) {
+						console.log(err)
+					}
+				});
+			},
+
 			commitClick() {
-
-				 
 				console.log('commitClick -->')
-
+this.moveToLocation();
 				//this.addLocation();
-				
+
 				var _this = this;
 				//调用获取城市列表接口
 				qqmapsdk.getCityList({
-				  success: function(res) {//成功后的回调
-				    //console.log(res);
-				    //console.log('省份数据：', res.result[0]); //打印省份数据
-				    //console.log('城市数据：', res.result[1]); //打印城市数据
-				    //console.log('区县数据：', res.result[2]); //打印区县数据
-				  },
-				  fail: function(error) {
-				    console.error(error);
-				  },
-				  complete: function(res) {
-				   // console.log(res);
-				  }
+					success: function(res) { //成功后的回调
+						//console.log(res);
+						//console.log('省份数据：', res.result[0]); //打印省份数据
+						//console.log('城市数据：', res.result[1]); //打印城市数据
+						//console.log('区县数据：', res.result[2]); //打印区县数据
+					},
+					fail: function(error) {
+						console.error(error);
+					},
+					complete: function(res) {
+						// console.log(res);
+					}
 				});
-				
+
 				qqmapsdk.getDistrictByCityId({
-				          // 传入对应省份ID获得城市数据，传入城市ID获得区县数据,依次类推
-				          id: 371700, //对应接口getCityList返回数据的Id，如：北京是'110000'
-				          success: function(res) {//成功后的回调
-				            console.log(res);
-				            console.log('对应城市ID下的区县数据(以北京为例)：', res.result[0]);
-				          },
-				          fail: function(error) {
-				            console.error(error);
-				          },
-				          complete: function(res) {
-				            console.log(res);
-				          }
-				        });
-				
-				
-				 // 调用接口
-			/*
+					// 传入对应省份ID获得城市数据，传入城市ID获得区县数据,依次类推
+					id: 371700, //对应接口getCityList返回数据的Id，如：北京是'110000'
+					success: function(res) { //成功后的回调
+						console.log(res);
+						console.log('对应城市ID下的区县数据(以北京为例)：', res.result[0]);
+					},
+					fail: function(error) {
+						console.error(error);
+					},
+					complete: function(res) {
+						console.log(res);
+					}
+				});
+
+
+				// 调用接口
+				/*
 			qqmapsdk.search({
 			       keyword: '酒店',
 			       success: function (res) {

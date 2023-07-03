@@ -9,9 +9,9 @@
 
 		<view class="image-list">
 			<view class="image-item" v-for="(item,index) in array" :key="index">
-				<uni-row class="demo-uni-row">
+				<uni-row class="demo-uni-row" @click="goto2('/pages/location/detail',item)">
 					<uni-col :span="1">
-						<span class="demo-uni-col dark">{{index+1}}</span>
+						<view class="demo-uni-col dark" @click="">{{index+1}}</view>
 					</uni-col>
 					<uni-col :span="4">
 						<view class="image-content">
@@ -21,11 +21,11 @@
 					</uni-col>
 
 					<uni-col :span="8">
-						<span class="demo-uni-col dark">{{item.name}}</span>
+						<view class="demo-uni-col dark">{{item.name}}</view>
 					</uni-col>
 
 					<uni-col :span="11">
-						<span class="demo-uni-col light">{{item.desc}}</span>
+						<view class="demo-uni-col light">{{item.desc}}</view>
 					</uni-col>
 				</uni-row>
 
@@ -40,6 +40,7 @@
 </template>
 
 <script>
+import detailVue from './detail.vue'
 	export default {
 		data() {
 			return {
@@ -56,10 +57,19 @@
 		},
 
 		methods: {
+				
+ 
 			imageError: function(e) {
 				console.error('image发生error事件，携带值为' + e.detail.errMsg)
 			},
-
+			rowclick(item){
+				console.log('onClickxx---'+item.name+item.desc);
+				 
+				
+			},
+			onClick(e){
+				console.log('onClick---'+e);
+			},
 			getLocationList() {
 				console.log('get location list -->')
 				uni.request({
@@ -85,10 +95,21 @@
 					}
 				})
 			},
+			
 			goto(url) {
 				console.log(url)
 				uni.navigateTo({
 					url: url
+				})
+			},
+			goto2(url,param) {
+				console.log(url,param)
+				var urlStr = url+'?param=' 
+				urlStr = urlStr+ encodeURIComponent(JSON.stringify(param))
+				
+				console.log(urlStr)
+				uni.navigateTo({
+					url: url+'?param='+encodeURIComponent(JSON.stringify(param))
 				})
 			}
 
@@ -97,11 +118,10 @@
 </script>
 
 <style>
-
 	.add_location {
 		position: sticky;
 		width: 100%;
-		top:40px;
+		top: 40px;
 		z-index: 3;
 	}
 

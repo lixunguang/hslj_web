@@ -1,35 +1,67 @@
 <template>
 	<view class="content">
 
-		<uni-row class="demo-uni-row">
-			<uni-col :span="24">
-				<button type="default" @click="goto('/pages/location/add')">detail</button>
-			</uni-col>
-		</uni-row>
+		
+			<map style="width: 100%; height: 300px;" :latitude="map_latitude" :longitude="map_longitude"
+				:markers="map_covers">
+			</map>
 
-		<view class="image-list">
-			<view class="image-item" v-for="(item,index) in array" :key="index">
+
+		<uni-collapse ref="collapse" v-model="value" @change="change">
+			<uni-collapse-item title="介绍">
+				<view class="content">
+					<text class="text">强强强强强强强强强强强强是</text>
+				</view>
+
 				<uni-row class="demo-uni-row">
-					<uni-col :span="8">
-						<view class="image-content">
-							<image style="height: 50px;width: 50px; background-color: #eeeeee;" :src="src"
-								@error="imageError"></image>
+					<uni-col :span="24">
+						<view class="image-content" style="font-size: 32;">
+							{{pageParam.name}}
 						</view>
 					</uni-col>
 
-					<uni-col :span="8">
-						<span class="demo-uni-col dark">{{item.name}}</span>
+					<uni-col :span="24">
+						<view class="image-content">
+							{{pageParam.desc}}
+						</view>
 					</uni-col>
 
-					<uni-col :span="8">
-						<span class="demo-uni-col light">{{item.desc}}</span>
-					</uni-col>
 				</uni-row>
+			</uni-collapse-item>
+		</uni-collapse>
 
 
+		<uni-collapse ref="collapse" v-model="value" @change="change">
+			<uni-collapse-item title="实景">
+				<view class="content">
+					<text class="text">强强强强强强强强强强强强是</text>
+				</view>
 
-			</view>
-		</view>
+				<view> </view>
+			</uni-collapse-item>
+		</uni-collapse>
+
+		<uni-collapse ref="collapse" v-model="value" @change="change">
+			<uni-collapse-item title="足迹">
+				<view class="content">
+					<text class="text">强强强强强强强强强强强强是</text>
+				</view>
+
+				<uni-row class="demo-uni-row">
+					<uni-col :span="12">
+						<button type="default" @click="goto('/pages/location/add')">谁来过这里</button>
+					</uni-col>
+					<uni-col :span="12">
+						<button type="default" @click="goto('/pages/location/add')">打卡此地点</button>
+					</uni-col>
+
+					<uni-col :span="12">
+						<button type="default" @click="goto('/pages/location/list')">返回</button>
+					</uni-col>
+
+				</uni-row>
+			</uni-collapse-item>
+		</uni-collapse>
 
 
 	</view>
@@ -37,21 +69,76 @@
 </template>
 
 <script>
+	//引入腾讯地图文件
+	import QQMapWX from '../../common/qqmap-wx-jssdk.min.js';
+	var qqmapsdk;
+
 	export default {
 		data() {
 			return {
+				value: ['0'],
+
+				pageParam: {
+					name: 'test',
+					desc: "ttt"
+				},
 				title: 'location',
 				array: [],
-				src: 'https://cdnwww.simapps.com/upload/image/20230507/3c44170f-2098-4199-afd0-c5e5f176b362.png'
+				src: 'https://cdnwww.simapps.com/upload/image/20230507/3c44170f-2098-4199-afd0-c5e5f176b362.png',
+
+
+				map_id: 0, // 使用 marker点击事件 需要填写id
+				map_title: 'map',
+				map_latitude: 39.909,
+				map_longitude: 116.39742,
+				map_covers: [{
+					latitude: 39.909,
+					longitude: 116.39742,
+					iconPath: '/static/location.png'
+				}, {
+					latitude: 39.90,
+					longitude: 116.39,
+					iconPath: '/static/location.png'
+				}]
 			}
 
 		},
 
+		onLoad(option) {
+			console.log(option)
+			if (Object.keys(option).length != 0) { //判断是否为空
+				this.pageParam = JSON.parse(decodeURIComponent(option.param));
+			}
+
+		qqmapsdk = new QQMapWX({
+				key: 'LUSBZ-3ABWQ-HFH57-4SAJI-5GFFT-2LFYQ'
+			});
+
+
+		},
 		onReady() {
-		
+
 		},
 
 		methods: {
+			change(e) {
+				console.log(e);
+				qqmapsdk.getDistrictByCityId({
+					// 传入对应省份ID获得城市数据，传入城市ID获得区县数据,依次类推
+					id: 371700, //对应接口getCityList返回数据的Id，如：北京是'110000'
+					success: function(res) { //成功后的回调
+						console.log(res);
+						console.log('对应城市ID下的区县数据(以北京为例)：', res.result[0]);
+					},
+					fail: function(error) {
+						console.error(error);
+					},
+					complete: function(res) {
+						console.log(res);
+					}
+				});
+			},
+
 			imageError: function(e) {
 				console.error('image发生error事件，携带值为' + e.detail.errMsg)
 			},
@@ -83,7 +170,7 @@
 			},
 			goto(url) {
 				console.log(url)
-				uni.navigateTo({
+				uni.redirectTo({
 					url: url
 				})
 			}
@@ -100,52 +187,60 @@
 		justify-content: flex-start;
 	}
 
-
-
-	.text-area {
-		display: flex;
-		justify-content: flex-start;
-	}
-
-	.title {
-		font-size: 36rpx;
-		color: #8f8f94;
-	}
-
-
-
 	.demo-uni-row {
+		margin-bottom: 10px;
+
+		display: block;
+
+	}
+
+	.uni-row {
+		margin-bottom: 10px;
+	}
+
+
+	.content {
+		display: flex;
+		flex-direction: column;
+		align-items: left;
+		justify-content: left;
+	}
+
+	.location-row {
+		justify-content: left;
+		margin-top: 10px;
 		margin-bottom: 10px;
 		/* QQ、抖音小程序文档写有 :host，但实测不生效 */
 		/* 百度小程序没有 :host，需要设置block */
 		/* #ifdef MP-TOUTIAO || MP-QQ || MP-BAIDU */
 		display: block;
 		/* #endif */
+		text-align: center;
 	}
 
-	/* 支付宝小程序没有 demo-uni-row 层级 */
-	/* 微信小程序使用了虚拟化节点，没有 demo-uni-row 层级 */
-	/* #ifdef MP-ALIPAY || MP-WEIXIN */
-	.uni-row {
-		margin-bottom: 10px;
+	.uni-input-border,
+	.uni-textarea-border {
+		width: 90%;
+		font-size: 12px;
+		color: #666;
+		border: 1px #e5e5e5 solid;
+		border-radius: 5px;
+		box-sizing: border-box;
+		padding: 0 10px;
+		text-align: left;
 	}
 
-	/* #endif */
+	.uni-input-border {
+		height: 35px;
 
-	.demo-uni-col {
-		height: 36px;
-		border-radius: 4px;
 	}
 
-	.dark_deep {
-		background-color: #99a9bf;
+	.pos {
+		text-align: left;
 	}
 
-	.dark {
-		background-color: #d3dce6;
-	}
-
-	.light {
-		background-color: #e5e9f2;
+	.commit {
+		margin: 50px;
+		text-align: center;
 	}
 </style>
