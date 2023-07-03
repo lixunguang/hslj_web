@@ -28,9 +28,6 @@
 						<view class="demo-uni-col light">{{item.desc}}</view>
 					</uni-col>
 				</uni-row>
-
-
-
 			</view>
 		</view>
 
@@ -94,24 +91,9 @@ import detailVue from './detail.vue'
 						});
 					}
 				})
-			},
-			
-			goto(url) {
-				console.log(url)
-				uni.navigateTo({
-					url: url
-				})
-			},
-			goto2(url,param) {
-				console.log(url,param)
-				var urlStr = url+'?param=' 
-				urlStr = urlStr+ encodeURIComponent(JSON.stringify(param))
-				
-				console.log(urlStr)
-				uni.navigateTo({
-					url: url+'?param='+encodeURIComponent(JSON.stringify(param))
-				})
 			}
+			
+
 
 		}
 	}

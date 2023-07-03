@@ -1,24 +1,74 @@
 <template>
 	<view class="content">
 		<image class="logo" src="/static/logo.png"></image>
+
 		<view class="text-area">
-			<text class="title">{{title}}</text>
+			<text class="title">热点信息</text>
 		</view>
+
+		<view class="text-area" v-for="item in hotNews">
+			<text class="title">{{item.index}}</text>
+			<text class="title" @click="openPage('/pages/resource/news')">{{item.name}}</text>
+		</view>
+
+		<view class="text-area">
+			<text class="title">最近热门地点</text>
+		</view>
+
+		<view class="text-area" v-for="item in hotLocations">
+			<text class="title">{{item.index}}</text>
+			<text class="title" @click="openPage('/pages/location/detail')">{{item.name}}</text>
+		</view>
+
+
+
 	</view>
 </template>
 
 <script>
+	import common from '../../common/common.js';
+
 	export default {
 		data() {
 			return {
-				title: 'main'
+				title: 'main',
+				hotNews: [{
+
+						index: 1,
+						name: "news111"
+					},
+					{
+						index: 2,
+						name: "news222"
+					}
+				],
+				hotLocations: [{
+						index: 1,
+						name: "天坛"
+					},
+					{
+						index: 2,
+						name: "玉渊潭"
+					},
+					{
+						index: 3,
+						name: "鼓楼"
+					},
+					{
+						index: 4,
+						name: "东单公园"
+					},
+
+				]
 			}
 		},
 		onLoad() {
 
 		},
 		methods: {
-
+			openPage(url) {
+				common.goto(url)
+			}
 		}
 	}
 </script>

@@ -101,7 +101,7 @@
 	var qqmapsdk;
 
 
-	console.log(common.g_i)
+
 	export default {
 		data() {
 			return {
