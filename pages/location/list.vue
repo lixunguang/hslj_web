@@ -3,15 +3,15 @@
 
 		<uni-row class="add_location">
 			<uni-col :span="24">
-				<button type="default" @click="goto('/pages/location/add')">增加新地点</button>
+				<button type="default" @click="openAddPage()">增加新地点</button>
 			</uni-col>
 		</uni-row>
 
 		<view class="image-list">
-			<view class="image-item" v-for="(item,index) in array" :key="index">
-				<uni-row class="demo-uni-row" @click="goto2('/pages/location/detail',item)">
+			<view class="image-item" v-for="(item,index) in locationList" :key="index">
+				<uni-row class="demo-uni-row" @click="openDetailPage(item)">
 					<uni-col :span="1">
-						<view class="demo-uni-col dark" @click="">{{index+1}}</view>
+						<view class="demo-uni-col " @click="">{{index+1}}</view>
 					</uni-col>
 					<uni-col :span="4">
 						<view class="image-content">
@@ -21,11 +21,11 @@
 					</uni-col>
 
 					<uni-col :span="8">
-						<view class="demo-uni-col dark">{{item.name}}</view>
+						<view class="demo-uni-col ">{{item.name}}</view>
 					</uni-col>
 
 					<uni-col :span="11">
-						<view class="demo-uni-col light">{{item.desc}}</view>
+						<view class="demo-uni-col ">{{item.desc}}</view>
 					</uni-col>
 				</uni-row>
 			</view>
@@ -37,12 +37,12 @@
 </template>
 
 <script>
-import detailVue from './detail.vue'
+	import common from '../../common/common.js';
 	export default {
 		data() {
 			return {
 				title: 'location',
-				array: [],
+				locationList: [],
 				src: 'https://cdnwww.simapps.com/upload/image/20230507/3c44170f-2098-4199-afd0-c5e5f176b362.png'
 			}
 
@@ -54,7 +54,6 @@ import detailVue from './detail.vue'
 		},
 
 		methods: {
-				
  
 			imageError: function(e) {
 				console.error('image发生error事件，携带值为' + e.detail.errMsg)
@@ -80,7 +79,7 @@ import detailVue from './detail.vue'
 					},
 					success: (res) => {
 						console.log(res.data.data);
-						this.array = res.data.data
+						this.locationList = res.data.data
 
 						this.text = 'request success';
 					},
@@ -91,6 +90,12 @@ import detailVue from './detail.vue'
 						});
 					}
 				})
+			},
+			openDetailPage(item){
+				common.goto2('/pages/location/detail',item);
+			},
+			openAddPage(){
+				common.goto('/pages/location/add');
 			}
 			
 
@@ -155,11 +160,7 @@ import detailVue from './detail.vue'
 		background-color: #99a9bf;
 	}
 
-	.dark {
-		background-color: #d3dce6;
-	}
 
-	.light {
-		background-color: #e5e9f2;
-	}
+
+
 </style>

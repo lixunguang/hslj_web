@@ -6,21 +6,21 @@
 			<text class="title">热点信息</text>
 		</view>
 
-		<view class="text-area" v-for="item in hotNews">
-			<text class="title">{{item.index}}</text>
-			<text class="title" @click="openPage('/pages/news/detail')">{{item.name}}</text>
+		<view class="text-area" v-for="(item,index) in latestNewsList">
+			<text class="title">{{index+1}}</text>
+			<text class="title" @click="openPage('/pages/news/detail')">{{item.title}}</text>
+			<text class="title" @click="openPage('/pages/news/detail')">{{item.date}}</text>
 		</view>
 		<view class="text-area"  >
 			<text class="title" @click="openPage('/pages/news/list')">更多</text>
-	 
 		</view>
 
 		<view class="text-area">
 			<text class="title">推荐地点</text>
 		</view>
 
-		<view class="text-area" v-for="item in hotLocations">
-			<text class="title">{{item.index}}</text>
+		<view class="text-area" v-for="(item,index) in hotLocationList">
+			<text class="title">{{index+1}}</text>
 			<text class="title" @click="openPage('/pages/location/detail')">{{item.name}}</text>
 		</view>
 		<view class="text-area"  >
@@ -39,38 +39,13 @@
 		data() {
 			return {
 				title: 'main',
-				hotNews: [{
-
-						index: 1,
-						name: "news111"
-					},
-					{
-						index: 2,
-						name: "news222"
-					}
-				],
-				hotLocations: [{
-						index: 1,
-						name: "天坛"
-					},
-					{
-						index: 2,
-						name: "玉渊潭"
-					},
-					{
-						index: 3,
-						name: "鼓楼"
-					},
-					{
-						index: 4,
-						name: "东单公园"
-					},
-
-				]
+				latestNewsList: [],
+				hotLocationList: [ 	]
 			}
 		},
 		onLoad() {
-
+				this.getNewsLatest();
+				this.getLocationHot();
 		},
 		methods: {
 			openPage(url) {
@@ -78,6 +53,56 @@
 			},
 			switchTab_(url) {
 				common.switchTab_(url)
+			},			
+			getNewsLatest() {
+				console.log('getNewsLatest -->')
+				uni.request({
+					url: 'https://golang-5aqo-57309-9-1301228508.sh.run.tcloudbase.com/v1/news/latest',
+					method: 'POST',
+					data: {
+						
+					},
+					header: {
+						'content-type': 'application/json'
+					},
+					success: (res) => {
+						console.log(res.data.data);
+						this.latestNewsList = res.data.data
+			
+						//this.text = 'request success';
+					},
+					fail: () => {
+						uni.showToast({
+							icon: 'none',
+							title: '网络异常,请稍后重试'
+						});
+					}
+				})
+			},
+			getLocationHot() {
+				console.log('getLocationHot -->')
+				uni.request({
+					url: 'https://golang-5aqo-57309-9-1301228508.sh.run.tcloudbase.com/v1/location/hot',
+					method: 'POST',
+					data: {
+						
+					},
+					header: {
+						'content-type': 'application/json'
+					},
+					success: (res) => {
+						console.log(res.data.data);
+						this.hotLocationList = res.data.data
+			
+						this.text = 'request success';
+					},
+					fail: () => {
+						uni.showToast({
+							icon: 'none',
+							title: '网络异常,请稍后重试'
+						});
+					}
+				})
 			}
 			
 		}
