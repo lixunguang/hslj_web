@@ -1,8 +1,10 @@
 const g_i = 123;
 
-function g_func() {
-	console.log('g_func')
-};
+ function switchTab_(url){
+	 uni.switchTab({
+	 	url: url
+	 });
+ }
 
 //不带参数
 function goto(url) {
@@ -34,5 +36,6 @@ module.exports= {
 */
 export default {
 	goto,
-	goto2
+	goto2,
+	switchTab_
 }

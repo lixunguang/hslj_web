@@ -15,7 +15,40 @@
 					}
 				}
 			}
-		},{
+		},
+		{
+			"path": "pages/news/list",
+			"style": {
+				"navigationBarTitleText": "list",//news
+				"app-plus": {
+					"titleNView": {
+						"buttons": [{
+							"text": "\ue534",
+							"fontSrc": "/static/uni.ttf",
+							"fontSize": "22px",
+							"color": "#FFFFFF"
+						}]
+					}
+				}
+			}
+		},
+		{
+			"path": "pages/news/detail",
+			"style": {
+				"navigationBarTitleText": "detail",//news
+				"app-plus": {
+					"titleNView": {
+						"buttons": [{
+							"text": "\ue534",
+							"fontSrc": "/static/uni.ttf",
+							"fontSize": "22px",
+							"color": "#FFFFFF"
+						}]
+					}
+				}
+			}
+		},
+		{
 			"path": "pages/location/list",//public毽子场地列表（展示可以是地图方式）
 			"style": {
 				"navigationBarTitleText": "列表",
@@ -61,7 +94,8 @@
 					}
 				}
 			}
-		},{
+		},
+		{
 			"path": "pages/resource/resource",
 			"style": {
 				"navigationBarTitleText": "欣赏",//毽之美，一切关于美的事物，包括基础知识介绍。
@@ -167,12 +201,14 @@
 				"iconPath": "static/logo1.png",
 				"selectedIconPath": "static/logo1.png",
 				"text": "列表"
-			},	{
+			},	
+			{
 				"pagePath": "pages/resource/resource",
 				"iconPath": "static/logo1.png",
 				"selectedIconPath": "static/logo1.png",
 				"text": "资源"
-			}, {
+			}, 
+			{
 				"pagePath": "pages/my/my",
 				"iconPath": "static/logo1.png",
 				"selectedIconPath": "static/logo1.png",

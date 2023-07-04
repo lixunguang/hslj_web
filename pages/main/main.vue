@@ -1,6 +1,6 @@
 <template>
 	<view class="content">
-		<image class="logo" src="/static/logo.png"></image>
+		<image class="logo" width=100 height=50 src="/static/logo.png"></image>
 
 		<view class="text-area">
 			<text class="title">热点信息</text>
@@ -8,18 +8,25 @@
 
 		<view class="text-area" v-for="item in hotNews">
 			<text class="title">{{item.index}}</text>
-			<text class="title" @click="openPage('/pages/resource/news')">{{item.name}}</text>
+			<text class="title" @click="openPage('/pages/news/detail')">{{item.name}}</text>
+		</view>
+		<view class="text-area"  >
+			<text class="title" @click="openPage('/pages/news/list')">更多</text>
+	 
 		</view>
 
 		<view class="text-area">
-			<text class="title">最近热门地点</text>
+			<text class="title">推荐地点</text>
 		</view>
 
 		<view class="text-area" v-for="item in hotLocations">
 			<text class="title">{{item.index}}</text>
 			<text class="title" @click="openPage('/pages/location/detail')">{{item.name}}</text>
 		</view>
-
+		<view class="text-area"  >
+			<text class="title" @click="switchTab_('/pages/location/list')">更多</text>
+	 
+		</view>
 
 
 	</view>
@@ -68,7 +75,11 @@
 		methods: {
 			openPage(url) {
 				common.goto(url)
+			},
+			switchTab_(url) {
+				common.switchTab_(url)
 			}
+			
 		}
 	}
 </script>
