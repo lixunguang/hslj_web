@@ -1,12 +1,12 @@
 <template>
 	<view class="content">
 
-		
-			<map style="width: 100%; height: 300px;" :latitude="map_latitude" :longitude="map_longitude"
-				:markers="map_covers">
-			</map>
+		<!-- 地图 -->
+		<map style="width: 100%; height: 300px;" :latitude="map_latitude" :longitude="map_longitude"
+			:markers="map_covers">
+		</map>
 
-
+		<!-- 详情 -->
 		<uni-collapse ref="collapse" v-model="value" @change="change">
 			<uni-collapse-item title="介绍">
 				<view class="content">
@@ -108,9 +108,10 @@
 			console.log(option)
 			if (Object.keys(option).length != 0) { //判断是否为空
 				this.pageParam = JSON.parse(decodeURIComponent(option.param));
+				console.log('hahahah--',this.pageParam)
 			}
 
-		qqmapsdk = new QQMapWX({
+			qqmapsdk = new QQMapWX({
 				key: 'LUSBZ-3ABWQ-HFH57-4SAJI-5GFFT-2LFYQ'
 			});
 
@@ -146,7 +147,7 @@
 			getLocationList() {
 				console.log('get location list -->')
 				uni.request({
-					url: 'https://golang-5aqo-57309-9-1301228508.sh.run.tcloudbase.com/admin/location/list',
+					url: 'https://golang-gcsj-64206-10-1301228508.sh.run.tcloudbase.com/admin/location/list',
 					method: 'POST',
 					data: {
 						text: 'uni.request'

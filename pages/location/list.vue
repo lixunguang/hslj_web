@@ -54,22 +54,22 @@
 		},
 
 		methods: {
- 
+
 			imageError: function(e) {
 				console.error('image发生error事件，携带值为' + e.detail.errMsg)
 			},
-			rowclick(item){
-				console.log('onClickxx---'+item.name+item.desc);
-				 
-				
+			rowclick(item) {
+				console.log('onClickxx---' + item.name + item.desc);
+
+
 			},
-			onClick(e){
-				console.log('onClick---'+e);
+			onClick(e) {
+				console.log('onClick---' + e);
 			},
 			getLocationList() {
 				console.log('get location list -->')
 				uni.request({
-					url: 'https://golang-5aqo-57309-9-1301228508.sh.run.tcloudbase.com/v1/location/get',
+					url: 'https://golang-gcsj-64206-10-1301228508.sh.run.tcloudbase.com/v1/location/get',
 					method: 'POST',
 					data: {
 						"location_code": 34
@@ -91,13 +91,13 @@
 					}
 				})
 			},
-			openDetailPage(item){
-				common.goto2('/pages/location/detail',item);
+			openDetailPage(item) {
+				common.goto2('/pages/location/detail', item);
 			},
-			openAddPage(){
+			openAddPage() {
 				common.goto('/pages/location/add');
 			}
-			
+
 
 
 		}
@@ -159,8 +159,4 @@
 	.dark_deep {
 		background-color: #99a9bf;
 	}
-
-
-
-
 </style>

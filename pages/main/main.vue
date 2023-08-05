@@ -2,6 +2,11 @@
 	<view class="content">
 		<image class="logo" width=100 height=50 src="/static/logo.png"></image>
 
+	  <view class="text-area">
+		  <!-- ，美，励志，幽默 诗词-->
+			<text class="title" @click="openPage('/pages/today/detail')">每日一句</text>
+		</view>
+		
 		<view class="text-area">
 			<text class="title">热点信息</text>
 		</view>
@@ -11,7 +16,7 @@
 			<text class="title" @click="openPage('/pages/news/detail')">{{item.title}}</text>
 			<text class="title" @click="openPage('/pages/news/detail')">{{item.date}}</text>
 		</view>
-		<view class="text-area"  >
+		<view class="text-area">
 			<text class="title" @click="openPage('/pages/news/list')">更多</text>
 		</view>
 
@@ -21,11 +26,11 @@
 
 		<view class="text-area" v-for="(item,index) in hotLocationList">
 			<text class="title">{{index+1}}</text>
-			<text class="title" @click="openPage('/pages/location/detail')">{{item.name}}</text>
+			<text class="title" @click="openPageParam('/pages/location/detail',item.id)">{{item.name}}</text>
 		</view>
-		<view class="text-area"  >
-			<text class="title" @click="switchTab_('/pages/location/list')">更多</text>
-	 
+		<view class="text-area">
+			<text class="title" @click="switchTabPage('/pages/location/list')">更多</text>
+
 		</view>
 
 
@@ -40,27 +45,30 @@
 			return {
 				title: 'main',
 				latestNewsList: [],
-				hotLocationList: [ 	]
+				hotLocationList: []
 			}
 		},
 		onLoad() {
-				this.getNewsLatest();
-				this.getLocationHot();
+			this.getNewsLatest();
+			this.getLocationHot();
 		},
 		methods: {
 			openPage(url) {
 				common.goto(url)
 			},
-			switchTab_(url) {
-				common.switchTab_(url)
-			},			
+			openPageParam(url,param) {
+				common.goto2(url, param)
+			},
+			switchTabPage(url) {
+				common.switchTabPage(url)
+			},
 			getNewsLatest() {
 				console.log('getNewsLatest -->')
 				uni.request({
-					url: 'https://golang-5aqo-57309-9-1301228508.sh.run.tcloudbase.com/v1/news/latest',
+					url: 'https://golang-gcsj-64206-10-1301228508.sh.run.tcloudbase.com/v1/news/latest',
 					method: 'POST',
 					data: {
-						
+
 					},
 					header: {
 						'content-type': 'application/json'
@@ -68,7 +76,7 @@
 					success: (res) => {
 						console.log(res.data.data);
 						this.latestNewsList = res.data.data
-			
+
 						//this.text = 'request success';
 					},
 					fail: () => {
@@ -82,10 +90,10 @@
 			getLocationHot() {
 				console.log('getLocationHot -->')
 				uni.request({
-					url: 'https://golang-5aqo-57309-9-1301228508.sh.run.tcloudbase.com/v1/location/hot',
+					url: 'https://golang-gcsj-64206-10-1301228508.sh.run.tcloudbase.com/v1/location/hot',
 					method: 'POST',
 					data: {
-						
+
 					},
 					header: {
 						'content-type': 'application/json'
@@ -93,7 +101,7 @@
 					success: (res) => {
 						console.log(res.data.data);
 						this.hotLocationList = res.data.data
-			
+
 						this.text = 'request success';
 					},
 					fail: () => {
@@ -104,7 +112,7 @@
 					}
 				})
 			}
-			
+
 		}
 	}
 </script>

@@ -2,11 +2,9 @@
 	<view class="content">
 
 		<!-- 地图 -->
-
-			<map style="width: 100%; height: 300px;" :latitude="map_latitude" :longitude="map_longitude"
-				:markers="map_covers">
-			</map>
-
+		<map style="width: 100%; height: 300px;" :latitude="map_latitude" :longitude="map_longitude"
+			:markers="map_covers">
+		</map>
 
 		<!-- 地点信息 -->
 		<uni-row class=" location-row">
@@ -37,7 +35,6 @@
 			</uni-col>
 		</uni-row>
 		<uni-row class=" location-row">
-
 			<uni-col :span="6">
 				<view>参与人数：</view>
 			</uni-col>
@@ -95,7 +92,7 @@
 <script>
 	//const {g_i} = require("../../common/common.js");
 	import common from '../../common/common.js';
-	
+
 	//引入腾讯地图文件
 	import QQMapWX from '../../common/qqmap-wx-jssdk.min.js';
 	var qqmapsdk;
@@ -191,7 +188,7 @@
 
 			commitClick() {
 				console.log('commitClick -->')
-this.moveToLocation();
+				this.moveToLocation();
 				//this.addLocation();
 
 				var _this = this;
@@ -247,7 +244,7 @@ this.moveToLocation();
 			addLocation() {
 				console.log('add location -->')
 				uni.request({
-					url: 'https://golang-5aqo-57309-9-1301228508.sh.run.tcloudbase.com/v1/location/add',
+					url: 'https://golang-gcsj-64206-10-1301228508.sh.run.tcloudbase.com/v1/location/add',
 					method: 'POST',
 					data: {
 						name: '仰山公园12',

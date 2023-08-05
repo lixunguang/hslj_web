@@ -50,7 +50,7 @@
 			getNewsList() {
 				console.log('get news list -->')
 				uni.request({
-					url: 'https://golang-5aqo-57309-9-1301228508.sh.run.tcloudbase.com/v1/news/all',
+					url: 'https://golang-gcsj-64206-10-1301228508.sh.run.tcloudbase.com/v1/news/all',
 					method: 'POST',
 					data: {
 						
