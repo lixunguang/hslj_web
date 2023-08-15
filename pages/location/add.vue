@@ -192,13 +192,65 @@
 				//this.addLocation();
 
 				var _this = this;
-				//调用获取城市列表接口
+				
+				//1 根据位置，获取描述
+				/* qqmapsdk.reverseGeocoder({
+				      //位置坐标，默认获取当前位置，非必须参数
+				       //Object格式，location: '35.25,115.416',
+				        location: {
+				          latitude: 39.085318,
+				          longitude: 117.201509
+				        },
+				      
+				      //get_poi: 1, //是否返回周边POI列表：1.返回；0不返回(默认),非必须参数
+				      success: function(res) {//成功后的回调
+					  console.log('succ 39 116');
+				        console.log(res);
+				        var res = res.result;
+				        var mks = [];
+
+				        //当get_poi为0时或者为不填默认值时，检索目标位置，按需使用
+				        mks.push({ // 获取返回结果，放到mks数组中
+				          title: res.address,
+				          id: 0,
+				          latitude: res.location.lat,
+				          longitude: res.location.lng,
+				          iconPath: './resources/placeholder.png',//图标路径
+				          width: 20,
+				          height: 20,
+				          callout: { //在markers上展示地址名称，根据需求是否需要
+				            content: res.address,
+				            color: '#000',
+				            display: 'ALWAYS'
+				          }
+				        });
+						
+						
+				      _this.setData({ //设置markers属性和地图位置poi，将结果在地图展示
+				          markers: mks,
+				          poi: {
+				            latitude: res.location.lat,
+				            longitude: res.location.lng
+				          }
+				        });
+					
+						
+				      },
+				      fail: function(error) {
+				        console.error(error);
+				      },
+				      complete: function(res) {
+				        console.log(res);
+				      }
+				    });
+						*/
+					
+				//2 调用获取城市列表接口
 				qqmapsdk.getCityList({
 					success: function(res) { //成功后的回调
 						//console.log(res);
-						//console.log('省份数据：', res.result[0]); //打印省份数据
-						//console.log('城市数据：', res.result[1]); //打印城市数据
-						//console.log('区县数据：', res.result[2]); //打印区县数据
+						console.log('省份数据：', res.result[0]); //打印省份数据
+			
 					},
 					fail: function(error) {
 						console.error(error);
@@ -207,13 +259,14 @@
 						// console.log(res);
 					}
 				});
-
+				
+				//3 传入对应省份ID获得城市数据，传入城市ID获得区县数据,依次类推
 				qqmapsdk.getDistrictByCityId({
-					// 传入对应省份ID获得城市数据，传入城市ID获得区县数据,依次类推
-					id: 371700, //对应接口getCityList返回数据的Id，如：北京是'110000'
+					
+					id: 110000, //对应接口getCityList返回数据的Id，如：北京是'110000',朝阳区：110105
 					success: function(res) { //成功后的回调
 						console.log(res);
-						console.log('对应城市ID下的区县数据(以北京为例)：', res.result[0]);
+						console.log('对应城市ID下的数据：', res.result[0]);
 					},
 					fail: function(error) {
 						console.error(error);
@@ -222,7 +275,7 @@
 						console.log(res);
 					}
 				});
-
+/**/
 
 				// 调用接口
 				/*

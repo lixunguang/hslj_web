@@ -3,7 +3,10 @@
 
 		<uni-row class="add_location">
 			<uni-col :span="24">
-				<button type="default" @click="openAddPage()">增加新地点</button>
+				<button type="default" @click="openAddPage()">北京</button>
+			</uni-col>
+			<uni-col :span="24">
+				<button type="default" @click="openAddPage()">山东</button>
 			</uni-col>
 		</uni-row>
 
@@ -31,6 +34,7 @@
 			</view>
 		</view>
 
+
 	</view>
 
 </template>
@@ -40,28 +44,11 @@
 	export default {
 		data() {
 			return {
-				pageParam: 110000,
 				title: 'location',
 				locationList: [],
 				src: 'https://cdnwww.simapps.com/upload/image/20230507/3c44170f-2098-4199-afd0-c5e5f176b362.png'
 			}
 
-		},
-
-
-		onInit(option) {
-			console.log(option)
-			if (Object.keys(option).length != 0) { //判断是否为空
-				this.pageParam = JSON.parse(decodeURIComponent(option.param));
-				console.log('hahahah--', this.pageParam)
-			}
-		},
-		onLoad(option) {
-			console.log(option)
-			if (Object.keys(option).length != 0) { //判断是否为空
-				this.pageParam = JSON.parse(decodeURIComponent(option.param));
-				console.log('hahahah--', this.pageParam)
-			}
 		},
 
 		onReady() {

@@ -10,7 +10,7 @@
 		<uni-collapse ref="collapse" v-model="value" @change="change">
 			<uni-collapse-item title="介绍">
 				<view class="content">
-					<text class="text">强强强强强强强强强强强强是</text>
+					<text class="text">-</text>
 				</view>
 
 				<uni-row class="demo-uni-row">
@@ -34,7 +34,7 @@
 		<uni-collapse ref="collapse" v-model="value" @change="change">
 			<uni-collapse-item title="实景">
 				<view class="content">
-					<text class="text">强强强强强强强强强强强强是</text>
+					<text class="text">-</text>
 				</view>
 
 				<view> </view>
@@ -44,7 +44,7 @@
 		<uni-collapse ref="collapse" v-model="value" @change="change">
 			<uni-collapse-item title="足迹">
 				<view class="content">
-					<text class="text">强强强强强强强强强强强强是</text>
+					<text class="text">-</text>
 				</view>
 
 				<uni-row class="demo-uni-row">
@@ -124,12 +124,13 @@
 		methods: {
 			change(e) {
 				console.log(e);
+
 				qqmapsdk.getDistrictByCityId({
 					// 传入对应省份ID获得城市数据，传入城市ID获得区县数据,依次类推
 					id: 371700, //对应接口getCityList返回数据的Id，如：北京是'110000'
 					success: function(res) { //成功后的回调
-						console.log(res);
-						console.log('对应城市ID下的区县数据(以北京为例)：', res.result[0]);
+						//console.log(res);
+						//console.log('对应城市ID下的区县数据(以北京为例)：', res.result[0]);
 					},
 					fail: function(error) {
 						console.error(error);
