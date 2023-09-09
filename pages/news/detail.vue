@@ -3,6 +3,13 @@
 		{{title}}
 
 	</view>
+	
+	<view class="text-area">
+		<text class="item" @click="openPage('/pages/news/list')">更多</text>
+	</view>
+	
+
+	
 </template>
 
 <script>

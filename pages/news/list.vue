@@ -38,7 +38,8 @@
 				title: '所有新闻',
 				newsList: [],
 				data:"",
-				content: ""
+				content: "",
+				src:"https://www.ibe.cn/assets/banner-5-dac6a73e.jpg"
 				}
 		},
 		
@@ -74,7 +75,10 @@
 			},
 			openPage(url) {
 				common.goto(url)
-			}
+			},
+			  imageError: function(e) {
+			            console.error('image发生error事件，携带值为' + e.detail.errMsg)
+			        }
 		}
 	 
 	
@@ -106,21 +110,15 @@
 	}
 	.demo-uni-row {
 		margin-bottom: 10px;
-		/* QQ、抖音小程序文档写有 :host，但实测不生效 */
-		/* 百度小程序没有 :host，需要设置block */
-		/* #ifdef MP-TOUTIAO || MP-QQ || MP-BAIDU */
-		display: block;
-		/* #endif */
+	
 	}
 
-	/* 支付宝小程序没有 demo-uni-row 层级 */
-	/* 微信小程序使用了虚拟化节点，没有 demo-uni-row 层级 */
-	/* #ifdef MP-ALIPAY || MP-WEIXIN */
+
 	.uni-row {
 		margin-bottom: 10px;
 	}
 
-	/* #endif */
+ 
 
 	.demo-uni-col {
 		height: 36px;

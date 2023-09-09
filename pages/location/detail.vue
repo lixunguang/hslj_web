@@ -56,7 +56,7 @@
 					</uni-col>
 
 					<uni-col :span="12">
-						<button type="default" @click="goto('/pages/location/list')">返回</button>
+						<button type="default" @click="goto('/pages/location/listx')">返回</button>
 					</uni-col>
 
 				</uni-row>

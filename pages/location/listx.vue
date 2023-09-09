@@ -1,9 +1,36 @@
 <template>
 	<view class="content">
+		<!-- ，按地区查看-->
+		<view class="section">
+			<uni-row>
+				<uni-col :span="12">
+					<text class="title" @click="openPage('/pages/today/detail')">按地区查看</text>
+				</uni-col>
+			</uni-row>
 
+			<uni-row>
+				<uni-col :span="8">
+					<text class="item" @click="openPageParam('/pages/location/listx',110000)">北京</text>
+				</uni-col>
+				<uni-col :span="8">
+					<text class="item" @click="openPageParam('/pages/location/listx',370000)">山东</text>
+				</uni-col>
+				<uni-col :span="8">
+					<text class="item" @click="openPageParam('/pages/location/listx',140000)">山西</text>
+				</uni-col>
+			</uni-row>
+
+		</view>
+		
 		<uni-row class="add_location">
 			<uni-col :span="24">
 				<button type="default" @click="openAddPage()">增加新地点</button>
+			</uni-col>
+		</uni-row>
+		
+		<uni-row class="add_location">
+			<uni-col :span="24">
+				<button type="default" @click="openAddPage()">约一场</button>
 			</uni-col>
 		</uni-row>
 
@@ -49,18 +76,12 @@
 		},
 
 
-		onInit(option) {
-			console.log(option)
-			if (Object.keys(option).length != 0) { //判断是否为空
-				this.pageParam = JSON.parse(decodeURIComponent(option.param));
-				console.log('hahahah--', this.pageParam)
-			}
-		},
+
 		onLoad(option) {
 			console.log(option)
 			if (Object.keys(option).length != 0) { //判断是否为空
 				this.pageParam = JSON.parse(decodeURIComponent(option.param));
-				console.log('hahahah--', this.pageParam)
+				console.log('hahahah--2', this.pageParam)
 			}
 		},
 
@@ -85,10 +106,10 @@
 			getLocationList() {
 				console.log('get location list -->')
 				uni.request({
-					url: 'https://golang-gcsj-64206-10-1301228508.sh.run.tcloudbase.com/v1/location/list',
+					url: '127.0.0.1:80/v1/location/list',//https://golang-gcsj-64206-10-1301228508.sh.run.tcloudbase.com
 					method: 'POST',
 					data: {
-						"location_code": 34
+						"location_code": this.pageParam
 					},
 					header: {
 						'content-type': 'application/json'
@@ -127,15 +148,21 @@
 		top: 40px;
 		z-index: 3;
 	}
-
+ 
 	.content {
 		display: flex;
 		flex-direction: column;
-		align-items: center;
+		align-items: flex-start;
 		justify-content: flex-start;
+		width: 100%;
 	}
 
 
+	.section {
+		margin: 10px 10px 10px 10px;
+		width: 100%;
+
+	}
 
 	.text-area {
 		display: flex;

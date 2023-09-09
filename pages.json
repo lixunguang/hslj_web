@@ -49,7 +49,7 @@
 			}
 		},
 		{
-			"path": "pages/location/list",//public毽子场地列表（展示可以是地图方式）
+			"path": "pages/location/listx",//public毽子场地列表（展示可以是地图方式）
 			"style": {
 				"navigationBarTitleText": "列表",
 				"app-plus": {
@@ -83,6 +83,22 @@
 			"path": "pages/location/add",
 			"style": {
 				"navigationBarTitleText": "增加地点",//add。
+				"app-plus": {
+					"titleNView": {
+						"buttons": [{
+							"text": "\ue534",
+							"fontSrc": "/static/uni.ttf",
+							"fontSize": "22px",
+							"color": "#FFFFFF"
+						}]
+					}
+				}
+			}
+		},
+		{
+			"path": "pages/location/area",
+			"style": {
+				"navigationBarTitleText": "所有区域",//add。
 				"app-plus": {
 					"titleNView": {
 						"buttons": [{
@@ -206,7 +222,7 @@
 				"text": "主页"
 			},
 			{
-				"pagePath": "pages/location/list",
+				"pagePath": "pages/location/listx",
 				"iconPath": "static/logo1.png",
 				"selectedIconPath": "static/logo1.png",
 				"text": "列表"

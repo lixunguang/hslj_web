@@ -1,6 +1,6 @@
 const g_i = 123;
 
- function switchTab_(url){
+ function switchTabPage(url){
 	 uni.switchTab({
 	 	url: url
 	 });
@@ -37,5 +37,5 @@ module.exports= {
 export default {
 	goto,
 	goto2,
-	switchTab_
+	switchTabPage
 }
