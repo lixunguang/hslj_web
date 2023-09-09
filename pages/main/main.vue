@@ -65,7 +65,13 @@
 				<view class="more">更多</view>
 			</uni-col>
 			<-->
+			
+	
 			</uni-row>
+			<view class="item_list" v-for="(item,index) in activeLocationList">
+				<text class="item">{{index+1}}</text>
+				<text class="item" @click="openPageParam('/pages/location/detail',item.id)"> {{item.name}} </text>
+			</view>
 		</view>
 
 		<!-- ，热门地点-->
@@ -88,9 +94,9 @@
 		</view>
 
 
-<view @click="getLocationActive()">aaaaaclickme</view>
+		<view @click="getLocationActive()">aaaaaclickme</view>
 
-<view @click="getTodayShort()">blickme</view>
+		<view @click="getTodayShort()">blickme</view>
 
 	</view>
 </template>
@@ -106,7 +112,7 @@
 				bannerNewsList: [],
 				hotLocationList: [],
 				activeLocationList: [],
-				
+
 				todayShort: "",
 
 				picsrc: "https://2023.ibe.cn/wp-content/uploads/2023/08/2023082201392746-1024x682.png",
@@ -215,7 +221,7 @@
 					url: 'https://golang-gcsj-64206-10-1301228508.sh.run.tcloudbase.com/v1/location/active',
 					method: 'POST',
 					data: {
- "location_code": 140000
+						"location_code": 140000
 					},
 					header: {
 						'content-type': 'application/json'
