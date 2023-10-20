@@ -30,7 +30,7 @@
 		
 		<uni-row class="add_location">
 			<uni-col :span="24">
-				<button type="default" @click="openAddPage()">约一场</button>
+				<button type="default" @click="openAddPage()">发起一场</button>
 			</uni-col>
 		</uni-row>
 
