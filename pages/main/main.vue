@@ -17,7 +17,7 @@
 		</view>
 -->
 
-		<!-- ，美，励志，幽默 诗词-->
+		<!-- ，美，励志，幽默 诗词
 		<view class="section">
 			<uni-row>
 				<uni-col :span="12">
@@ -29,19 +29,19 @@
 				<text class="item" @click="openPage('/pages/location/detail')">{{todayShort}}</text>
 			</view>
 		</view>
+-->
 
-
-		<!-- ，新闻 正在发生的事件-->
+		<!-- ，新闻 正在发生的事件
 		<view class="section">
 			<uni-row>
 				<uni-col :span="12">
 					<view class="title">热点信息</view>
 				</uni-col>
-				<!--- todo:以后增加 >
+		 
 				<uni-col :span="12">
 					<view class="more">更多</view>
 				</uni-col>
-				<-->
+				 
 			</uni-row>
 
 			<uni-row class="demo-uni-row" v-for="(item,index) in latestNewsList" @click="openPage('/pages/news/detail')"
@@ -51,20 +51,20 @@
 				<uni-col class="item" :span="13">{{item.date}}</uni-col>
 			</uni-row>
 		</view>
+-->
 
 
-
-		<!-- ，正在进行-->
+		<!-- ，正在进行
 		<view class="section">
 			<uni-row>
 				<uni-col :span="12">
 					<text class="title" @click="openPage('/pages/today/detail')">正在进行</text>
 				</uni-col>
-				<!--- todo:以后增加 >
+			 
 			<uni-col :span="12">
 				<view class="more">更多</view>
 			</uni-col>
-			<-->
+			 
 			
 	
 			</uni-row>
@@ -73,18 +73,14 @@
 				<text class="item" @click="openPageParam('/pages/location/detail',item.id)"> {{item.name}} </text>
 			</view>
 		</view>
-
-		<!-- ，热门地点-->
+-->
+		<!-- ，热门地点
 		<view class="section">
 			<uni-row>
 				<uni-col :span="12">
 					<text class="title" @click="openPage('/pages/today/detail')">热门地点</text>
 				</uni-col>
-				<!--- todo:以后增加 >
-			<uni-col :span="12">
-				<view class="more">更多</view>
-			</uni-col>
-			<-->
+	
 			</uni-row>
 
 			<view class="item_list" v-for="(item,index) in hotLocationList">
@@ -92,11 +88,26 @@
 				<text class="item" @click="openPageParam('/pages/location/detail',item.id)"> {{item.name}} </text>
 			</view>
 		</view>
+-->
+		<view class="section">
+			<uni-row>
+
+				<view style="margin-top:100px;color: red;text-decoration:underline;"
+					@click="openPage('/pages/location/listxy')">北京踢毽地点列表汇总</view>
 
 
+			</uni-row>
+
+			<uni-row>
+				<view style="margin-top:50px;color: green;text-decoration:underline;"
+					@click="openPage('/pages/my/add_location')">我想登记一个新地点</view>
+			</uni-row>
+		</view>
+
+		<!-- 
 		<view @click="getLocationActive()">aaaaaclickme</view>
-
 		<view @click="getTodayShort()">blickme</view>
+-->
 
 	</view>
 </template>
@@ -115,7 +126,6 @@
 
 				todayShort: "",
 
-				picsrc: "https://2023.ibe.cn/wp-content/uploads/2023/08/2023082201392746-1024x682.png",
 				background: ['color1', 'color2', 'color3'],
 				indicatorDots: true,
 				autoplay: true,
@@ -124,11 +134,11 @@
 			}
 		},
 		onLoad() {
-			this.getBannerNewsList();
-			this.getNewsLatest();
+			//this.getBannerNewsList();
+			//this.getNewsLatest();
 			this.getLocationHot();
-			this.getTodayShort();
-			this.getLocationActive();
+			//this.getTodayShort();
+			//this.getLocationActive();
 		},
 		methods: {
 			openPage(url) {
@@ -230,8 +240,6 @@
 						console.log("7777777777777777777");
 						console.log(res);
 						this.activeLocationList = res.data.data
-
-
 					},
 					fail: () => {
 						uni.showToast({

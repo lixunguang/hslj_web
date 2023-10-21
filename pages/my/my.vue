@@ -3,9 +3,8 @@
 
 		<uni-row class="demo-uni-row">
 			<uni-col :span="24">
-				<button type="default" @click="goto('/pages/my/about')">关于</button>
-				<button type="default" @click="goto('/pages/my/footprint')">足迹</button>
-				<button type="default" @click="goto('/pages/my/favorite')">收藏</button>
+				<view type="default" @click="goto('/pages/my/about')">我已经提交的地点</view>
+
 			</uni-col>
 		</uni-row>
 		

@@ -188,8 +188,8 @@
 
 			commitClick() {
 				console.log('commitClick -->')
-				this.moveToLocation();
-				//this.addLocation();
+				//this.moveToLocation();
+				this.addLocation();
 
 				var _this = this;
 				

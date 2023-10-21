@@ -63,7 +63,41 @@
 					}
 				}
 			}
-		},{
+		},
+		{
+			"path": "pages/location/listxy",//public毽子场地列表（202310版本）
+			"style": {
+				"navigationBarTitleText": "列表202310",
+				"app-plus": {
+					"titleNView": {
+						"buttons": [{
+							"text": "\ue534",
+							"fontSrc": "/static/uni.ttf",
+							"fontSize": "22px",
+							"color": "#FFFFFF"
+						}]
+					}
+				}
+			}
+		},
+		{
+			"path": "pages/location/detailxy",//public毽子场地列表（202310版本）
+			"style": {
+				"navigationBarTitleText": "详情202310",
+				"app-plus": {
+					"titleNView": {
+						"buttons": [{
+							"text": "\ue534",
+							"fontSrc": "/static/uni.ttf",
+							"fontSize": "22px",
+							"color": "#FFFFFF"
+						}]
+					}
+				}
+			}
+		}
+		,
+		{
 			"path": "pages/location/detail",//public毽子场地列表（展示可以是地图方式）
 			"style": {
 				"navigationBarTitleText": "详情",
@@ -128,6 +162,22 @@
 			}
 		},
 		{
+			"path": "pages/resource/detail",
+			"style": {
+				"navigationBarTitleText": "动作",//踢毽动作的介绍。
+				"app-plus": {
+					"titleNView": {
+						"buttons": [{
+							"text": "\ue534",
+							"fontSrc": "/static/uni.ttf",
+							"fontSize": "22px",
+							"color": "#FFFFFF"
+						}]
+					}
+				}
+			}
+		},
+		{
 			"path": "pages/my/my",
 			"style": {
 				"navigationBarTitleText": "我的",//我的关注，足迹，关于
@@ -159,7 +209,22 @@
 				}
 			}
 		},
-		
+		{
+			"path": "pages/my/add_location",
+			"style": {
+				"navigationBarTitleText": "增加一个地点",
+				"app-plus": {
+					"titleNView": {
+						"buttons": [{
+							"text": "\ue534",
+							"fontSrc": "/static/uni.ttf",
+							"fontSize": "22px",
+							"color": "#FFFFFF"
+						}]
+					}
+				}
+			}
+		},
 		{
 			"path": "pages/my/footprint",
 			"style": {
@@ -222,7 +287,7 @@
 				"text": "主页"
 			},
 			{
-				"pagePath": "pages/location/listx",
+				"pagePath": "pages/location/list202310",
 				"iconPath": "static/logo1.png",
 				"selectedIconPath": "static/logo1.png",
 				"text": "列表"
