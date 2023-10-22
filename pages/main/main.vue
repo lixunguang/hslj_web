@@ -136,7 +136,7 @@
 		onLoad() {
 			//this.getBannerNewsList();
 			//this.getNewsLatest();
-			this.getLocationHot();
+			//this.getLocationHot();
 			//this.getTodayShort();
 			//this.getLocationActive();
 		},

@@ -13,32 +13,27 @@
 
 <script>
 	import common from '../../common/common.js';
-	
+
 	export default {
 		data() {
 			return {
-				locationList: [{
-					id: 1,
-					name: "dsfsd"
-				}]
+				locationList: []
 			}
 
 		},
 		onLoad(option) {
 			console.log(option)
-			if (Object.keys(option).length != 0) { //判断是否为空
-				this.pageParam = JSON.parse(decodeURIComponent(option.param));
-				console.log('hahahah--2', this.pageParam)
-			}
+		
+			this.getLocationList()
 		},
 
 		onReady() {
-			this.getLocationList()
+
 		},
 
 		methods: {
 			getLocationList() {
-				console.log('getLocationList -->')
+				
 				uni.request({
 					url: 'https://golang-gcsj-64206-10-1301228508.sh.run.tcloudbase.com/v1/location/list',
 					method: 'POST',
@@ -49,8 +44,8 @@
 						'content-type': 'application/json'
 					},
 					success: (res) => {
+						console.log('getLocationList -->%i--%O', this.pageParam, res)
 					
-						//console.log(res);
 						this.locationList = res.data.data
 					},
 					fail: () => {
@@ -61,6 +56,8 @@
 					}
 				})
 			},
+			
+			
 			openDetailPage(param) {
 				common.goto2('/pages/location/detailxy', param);
 			}

@@ -64,10 +64,10 @@
 				console.log('onCommitClick--')
 				var param = {
 					name: this.nameStr,
-					desc: this.positionStr + "###" + this.descStr
-
+					desc: this.descStr,
+					locationDesc: this.positionStr
 				};
-				
+
 				console.log(param)
 				uni.request({
 					url: 'https://golang-gcsj-64206-10-1301228508.sh.run.tcloudbase.com//v1/location/add',

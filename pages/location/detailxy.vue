@@ -2,28 +2,12 @@
 	<view class="content">
 
 		<!-- 详情 -->
-		<uni-collapse ref="collapse" v-model="value" @change="change">
-			<uni-collapse-item title="介绍">
-				<view class="content">
-					<text class="text">-</text>
-				</view>
 
-				<uni-row class="demo-uni-row">
-					<uni-col :span="24">
-						<view class="image-content" style="font-size: 32;">
-							{{pageParam.name}}
-						</view>
-					</uni-col>
+		<view class="content">
 
-					<uni-col :span="24">
-						<view class="image-content">
-							{{pageParam.desc}}
-						</view>
-					</uni-col>
-
-				</uni-row>
-			</uni-collapse-item>
-		</uni-collapse>
+			<text class="text">{{locationDetail.name}}</text>
+			<text class="text">{{locationDetail.desc}}</text>
+		</view>
 	</view>
 
 </template>
@@ -34,13 +18,9 @@
 			return {
 				value: ['0'],
 
-				pageParam: {
-					name: 'test',
-					desc: "ttt"
-				},
-				title: 'location',
-				array: []
-
+				pageParam: 0,
+				locationDetail: {},
+				text: ""
 			}
 
 		},
@@ -49,12 +29,12 @@
 			console.log(option)
 			if (Object.keys(option).length != 0) { //判断是否为空
 				this.pageParam = JSON.parse(decodeURIComponent(option.param));
-				console.log('hahahah--', this.pageParam)
 			}
 
+			this.getLocationList()
 		},
-		
-		
+
+
 		onReady() {
 
 		},
@@ -65,22 +45,21 @@
 				console.log(e);
 
 			},
-
-
 			getLocationList() {
-				console.log('get location list -->')
+				console.log('getLocationdetail-->%d', this.pageParam)
 				uni.request({
-					url: 'https://golang-gcsj-64206-10-1301228508.sh.run.tcloudbase.com/admin/location/list',
+					url: 'https://golang-gcsj-64206-10-1301228508.sh.run.tcloudbase.com/v1/location',
 					method: 'POST',
 					data: {
-						text: 'uni.request'
+						"id": this.pageParam
 					},
 					header: {
-						'custom-header': '' //自定义请求头信息
+						'content-type': 'application/json'
 					},
 					success: (res) => {
+						console.log('succ!');
 						console.log(res.data.data);
-						this.array = res.data.data
+						this.locationDetail = res.data.data
 
 						this.text = 'request success';
 					},
@@ -90,12 +69,6 @@
 							title: '网络异常,请稍后重试'
 						});
 					}
-				})
-			},
-			goto(url) {
-				console.log(url)
-				uni.redirectTo({
-					url: url
 				})
 			}
 
