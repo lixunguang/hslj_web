@@ -199,7 +199,9 @@
 						});
 					}
 				})
+
 			},
+
 			getLocationHot() {
 				console.log('getLocationHot -->')
 				uni.request({

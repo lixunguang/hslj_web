@@ -1,17 +1,27 @@
 const g_i = 123;
 
- function switchTabPage(url){
-	 uni.switchTab({
-	 	url: url
-	 });
- }
+function switchTabPage(url) {
+	uni.switchTab({
+		url: url
+	});
+}
 
 //不带参数
 function goto(url) {
 	console.log(url)
 	uni.navigateTo({
-		url: url
+		url: url,
+		success(result) {
+			console.log('navigateTo success', result.errMsg)
+
+
+		},
+		fail(error) {
+			console.log('navigateTo fail', error.errMsg)
+
+		},
 	})
+	console.log(url)
 };
 
 //带参数

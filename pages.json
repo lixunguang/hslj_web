@@ -3,7 +3,7 @@
 		{
 			"path": "pages/main/main",
 			"style": {
-				"navigationBarTitleText": "主页",//约毽（展示当前正在举行的，发起一场新的），关于（成果展示），新闻
+				"navigationBarTitleText": "主页", //约毽（展示当前正在举行的，发起一场新的），关于（成果展示），新闻
 				"app-plus": {
 					"titleNView": {
 						"buttons": [{
@@ -19,7 +19,7 @@
 		{
 			"path": "pages/news/list",
 			"style": {
-				"navigationBarTitleText": "list",//news
+				"navigationBarTitleText": "list", //news
 				"app-plus": {
 					"titleNView": {
 						"buttons": [{
@@ -35,7 +35,7 @@
 		{
 			"path": "pages/news/detail",
 			"style": {
-				"navigationBarTitleText": "detail",//news
+				"navigationBarTitleText": "detail", //news
 				"app-plus": {
 					"titleNView": {
 						"buttons": [{
@@ -49,7 +49,7 @@
 			}
 		},
 		{
-			"path": "pages/location/listx",//public毽子场地列表（展示可以是地图方式）
+			"path": "pages/location/listx", //public毽子场地列表（展示可以是地图方式）
 			"style": {
 				"navigationBarTitleText": "列表",
 				"app-plus": {
@@ -65,7 +65,7 @@
 			}
 		},
 		{
-			"path": "pages/location/listxy",//public毽子场地列表（202310版本）
+			"path": "pages/location/listxy", //public毽子场地列表（202310版本）
 			"style": {
 				"navigationBarTitleText": "列表202310",
 				"app-plus": {
@@ -81,7 +81,7 @@
 			}
 		},
 		{
-			"path": "pages/location/detailxy",//public毽子场地列表（202310版本）
+			"path": "pages/location/detailxy", //public毽子场地列表（202310版本）
 			"style": {
 				"navigationBarTitleText": "详情202310",
 				"app-plus": {
@@ -95,10 +95,9 @@
 					}
 				}
 			}
-		}
-		,
+		},
 		{
-			"path": "pages/location/detail",//public毽子场地列表（展示可以是地图方式）
+			"path": "pages/location/detail", //public毽子场地列表（展示可以是地图方式）
 			"style": {
 				"navigationBarTitleText": "详情",
 				"app-plus": {
@@ -112,11 +111,11 @@
 					}
 				}
 			}
-		}
-		,{
+		},
+		{
 			"path": "pages/location/add",
 			"style": {
-				"navigationBarTitleText": "增加地点",//add。
+				"navigationBarTitleText": "增加地点", //add。
 				"app-plus": {
 					"titleNView": {
 						"buttons": [{
@@ -132,7 +131,7 @@
 		{
 			"path": "pages/location/area",
 			"style": {
-				"navigationBarTitleText": "所有区域",//add。
+				"navigationBarTitleText": "所有区域", //add。
 				"app-plus": {
 					"titleNView": {
 						"buttons": [{
@@ -148,7 +147,7 @@
 		{
 			"path": "pages/resource/resource",
 			"style": {
-				"navigationBarTitleText": "欣赏",//毽之美，一切关于美的事物，包括基础知识介绍。
+				"navigationBarTitleText": "欣赏", //毽之美，一切关于美的事物，包括基础知识介绍。
 				"app-plus": {
 					"titleNView": {
 						"buttons": [{
@@ -164,7 +163,7 @@
 		{
 			"path": "pages/resource/detail",
 			"style": {
-				"navigationBarTitleText": "动作",//踢毽动作的介绍。
+				"navigationBarTitleText": "动作", //踢毽动作的介绍。
 				"app-plus": {
 					"titleNView": {
 						"buttons": [{
@@ -180,7 +179,7 @@
 		{
 			"path": "pages/my/my",
 			"style": {
-				"navigationBarTitleText": "我的",//我的关注，足迹，关于
+				"navigationBarTitleText": "我的", //我的关注，足迹，关于
 				"app-plus": {
 					"titleNView": {
 						"buttons": [{
@@ -241,7 +240,6 @@
 				}
 			}
 		},
-		
 		{
 			"path": "pages/my/favorite",
 			"style": {
@@ -257,20 +255,19 @@
 					}
 				}
 			}
+		},
+		{
+			"path": "pages/today/detail",
+			"style": {
+				"navigationBarTitleText": "今日",
+				"enablePullDownRefresh": false
+			}
+
 		}
-	    ,{
-            "path" : "pages/today/detail",
-            "style" :                                                                                    
-            {
-                "navigationBarTitleText": "今日",
-                "enablePullDownRefresh": false
-            }
-            
-        }
-    ],
+	],
 	"globalStyle": {
 		"navigationBarTextStyle": "black",
-		"navigationBarTitleText": "uni-app",
+		"navigationBarTitleText": "毽行",
 		"navigationBarBackgroundColor": "#F8F8F8",
 		"backgroundColor": "#F8F8F8",
 		"enablePullDownRefresh": true
@@ -287,17 +284,11 @@
 				"text": "主页"
 			},
 			{
-				"pagePath": "pages/location/list202310",
-				"iconPath": "static/logo1.png",
-				"selectedIconPath": "static/logo1.png",
-				"text": "列表"
-			},	
-			{
 				"pagePath": "pages/resource/resource",
 				"iconPath": "static/logo1.png",
 				"selectedIconPath": "static/logo1.png",
 				"text": "资源"
-			}, 
+			},
 			{
 				"pagePath": "pages/my/my",
 				"iconPath": "static/logo1.png",
