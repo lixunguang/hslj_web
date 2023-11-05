@@ -92,14 +92,14 @@
 		<view class="section">
 			<uni-row>
 
-				<view style="margin-top:100px;color: red;text-decoration:underline;"
-					@click="openPage('/pages/location/listxy')">北京踢毽地点列表汇总</view>
+				<view style="font-size:20px;margin-top:100px;color: red;text-decoration:underline;"
+					@click="openPage('/pages/location/listxy')">踢毽地点列表汇总</view>
 
 
 			</uni-row>
 
 			<uni-row>
-				<view style="margin-top:50px;color: green;text-decoration:underline;"
+				<view style="font-size:10px;margin-top:50px;color: darkgray;text-decoration:underline;"
 					@click="openPage('/pages/my/add_location')">我想登记一个新地点</view>
 			</uni-row>
 		</view>
